@@ -1,19 +1,9 @@
+import React from 'react'
 
-import React from "react";
-import Product from "./Product";
+const ProductList = () => {
+  return (
+    <div>ProductList</div>
+  )
+}
 
-const ProductList = props => {
-  const { products } = props;
-
-  const renderProducts = products.map(({ id, title, category }) => {
-    return (
-      <li key={id}>
-        <Product title={title} category={category} />
-      </li>
-    );
-  });
-
-  return <ul>{renderProducts}</ul>;
-};
-
-export default ProductList;
+export default ProductList
