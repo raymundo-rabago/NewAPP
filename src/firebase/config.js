@@ -1,9 +1,11 @@
 // https://github.com/tylermcginnis/react-router-firebase-auth/tree/master/src
+// https://blog.logrocket.com/user-authentication-firebase-react-apps/
 
 import { initializeApp } from "firebase/app";
-import {getAuth} from "firebae/auth";
-import {getStorage, ref, uploadBytes, getBytes, getDownloadURL } from "firebae/storage";
-import {getFirestore, collections, addDoc, getDocs, doc, getDoc, query where, setDoc, deleteDoc } from "firebae/firestore";
+import { GoogleAuthProvider,
+getAuth, signInWithPopup, signInWithEmailAndPassword, createUserWithEmailAndPassword, sendPasswordResetEmail, signOut } from "firebase/auth";
+import { getFirestore, query, getDocs, collection, where, addDoc } from "firebase/firestore";
+
 
 const firebaseConfig = {
   apiKey: import.meta.env.VITE_API_KEY,
@@ -17,8 +19,24 @@ const firebaseConfig = {
 
 export const app = initializeApp(firebaseConfig);
 export const auth = getAuth(app);
-export const db = getFirestore();
+export const db = getFirestore(app);
+
 export const storage = getStorage();
+
+
+// AUTH FUNCTIONS
+export const logInWithEmailAndPassword = async (email, password) => {
+  try {
+    await signInWithEmailAndPassword(auth, email, password);
+  } catch (err) {
+    console.error(err);
+    alert(err.message);
+  }
+};
+
+export const logout = async () => {
+  await signOut(auth);
+};
 
 
 // USERS FUNCTIONS
@@ -36,11 +54,6 @@ export async function getUserPublicProfileInfo(uid) {
     links: linksInfo,
   };
 }
-
-export async function logout() {
-  await auth.signOut();
-}
-
 
 
 // DATA FUNCTIONS

@@ -1,9 +1,10 @@
 import React from 'react';
 
-import { getAuth, signOut } from 'firebase/auth'
-import { useAuthState } from './firebase'
+import { getAuth, signOut } from '../firebase/auth';
+import { useAuthState } from 'firebase';
 
-export const Admin = () => {
+const Admin = () => {
+
   const { user } = useAuthState()
 
   return (
@@ -13,3 +14,5 @@ export const Admin = () => {
     </>
   )
 }
+
+export default Admin;
