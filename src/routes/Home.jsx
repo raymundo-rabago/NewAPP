@@ -17,7 +17,7 @@ export default function Home() {
           <TextField required id="password" label="Contraseña" type="password" autoComplete="current-password" />
           <FormControlLabel control={<Checkbox value="remember" color="primary" />} label="Recordarme"/>
           <LoadingButton loading variant="container" color="secondary" size="large">Submit</LoadingButton>
-          <Typography variant="body2" color="textSecondary" align="center">Soluxe Sunglasses Boutique© 2023</Typography>
+          <Typography variant="body2" color="textSecondary" align="center">Soluxe Sunglasses Boutique© 2024</Typography>
         </Box>
       </Grid>
     </Container>
