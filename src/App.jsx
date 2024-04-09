@@ -1,20 +1,20 @@
-
-import "./index.scss";
-import React from 'react';
-import  { BrowserRouter as Router, Routes, Route} from "react-router-dom";
-
-import Login from "./components/loginPage";
-import Admin from "./components/Admin";
-
+import LoginButton from "./components/LoginButton";
+import LogoutButton from "./components/LogoutButton";
+import Profile from "./Profile";
+import { useAuth0 } from "@auth0/auth0-react";
 
 function App() {
+  const { isAuthenticated, isLoading } = useAuth0();
+
+  if (isLoading) {
+    return <h1>Is Loading</h1>
+  }
+
   return (
-      <Router>
-        <Routes>
-          <Route path="/" element={<Login/>} />
-          <Route path="/admin" element={<Admin/>} />
-        </Routes>
-      </Router>
+    <div className="App">
+      {isAuthenticated ? <LogoutButton /> : <LoginButton />}
+      <Profile />
+    </div>
   );
 }
 

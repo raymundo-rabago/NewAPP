@@ -1,14 +1,18 @@
 import React from 'react';
+import LoginButton from "./loginButton";
 import LogoutButton from './LogoutButton.jsx';
 
-const Admin = () => {
+const Home = () => {
+
+  
 
   return (
     <>
-      <h1>Admin Page</h1>
+      <h1>Home Page</h1>
+      <LoginButton/>
       <LogoutButton />
     </>
   )
 }
 
-export default Admin;
+export default Home;
