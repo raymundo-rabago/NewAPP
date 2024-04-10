@@ -1,14 +1,10 @@
 import '@mantine/core/styles.css';
 
-import { createTheme, MantineProvider } from '@mantine/core';
-
-const theme = createTheme({
-  /** Your theme override here */
-});
+import { MantineProvider } from '@mantine/core';
 
 const App = () => {
   return (
-    <MantineProvider theme={theme}>
+    <MantineProvider>
       <h1>Homepage</h1>
     </MantineProvider>
   );
