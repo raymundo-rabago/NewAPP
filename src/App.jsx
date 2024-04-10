@@ -1,20 +1,16 @@
-import LoginButton from "./components/LoginButton";
-import LogoutButton from "./components/LogoutButton";
-import Profile from "./Profile";
-import { useAuth0 } from "@auth0/auth0-react";
+import '@mantine/core/styles.css';
 
-function App() {
-  const { isAuthenticated, isLoading } = useAuth0();
+import { createTheme, MantineProvider } from '@mantine/core';
 
-  if (isLoading) {
-    return <h1>Is Loading</h1>
-  }
+const theme = createTheme({
+  /** Your theme override here */
+});
 
+const App = () => {
   return (
-    <div className="App">
-      {isAuthenticated ? <LogoutButton /> : <LoginButton />}
-      <Profile />
-    </div>
+    <MantineProvider theme={theme}>
+      <h1>Homepage</h1>
+    </MantineProvider>
   );
 }
 
