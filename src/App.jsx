@@ -1,13 +1,12 @@
 import '@mantine/core/styles.css';
-
 import { MantineProvider } from '@mantine/core';
 
-const App = () => {
+import { AuthPage } from './components/AuthPage';
+
+export function App() {
   return (
     <MantineProvider>
-      <h1>Homepage</h1>
+      <AuthPage />
     </MantineProvider>
   );
-}
-
-export default App;
+};
