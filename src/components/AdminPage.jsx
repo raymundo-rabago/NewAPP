@@ -4,23 +4,15 @@ import { useNavigate } from "react-router-dom";
 
 import { auth, logout } from "../firebase";
 
+import { Listing } from './Listing';
+
 export default function AdminPage() {
+
+  const ApiUrl = 'https://api.notion.com/v1/databases/{database_id}/query';
 
   const [user, loading, error] = useAuthState(auth);
   const [name, setName] = useState("");
   const navigate = useNavigate();
-
-  /*const fetchUserName = async () => {
-    try {
-      const q = query(collection(db, "users"), where("uid", "==", user?.uid));
-      const doc = await getDocs(q);
-      const data = doc.docs[0].data();
-      setName(data.name);
-    } catch (err) {
-      console.error(err);
-      alert("An error occured while fetching user data");
-    }
-  };*/
 
   useEffect(() => {
     if (loading) return;
@@ -31,6 +23,7 @@ export default function AdminPage() {
   return (
     <div className="container">
         <h1>Admin Page</h1>
+        <Listing />
         <button className="button" onClick={logout}>Logout</button>
     </div>
   );

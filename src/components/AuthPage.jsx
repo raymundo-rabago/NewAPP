@@ -27,9 +27,7 @@ export default function AuthPage() {
     return (
         <div className={classes.wrapper}>
             <Paper className={classes.form} radius={0} p={30}>
-                <Title order={2} className={classes.title} ta="center" mt="md" mb={50}>
-                    Soluxe App
-                </Title>
+                <Title order={2} className={classes.title} ta="center" mt="md" mb={50}>Soluxe App</Title>
                 <TextInput label="Correo Electrónico" placeholder="ejemplo@correo.com" size="md" value={email} onChange={(e) => setEmail(e.target.value)} />
                 <PasswordInput label="Password" placeholder="Contraseña" mt="md" size="md" value={password} onChange={(e) => setPassword(e.target.value)}/>
                 <Button fullWidth mt="xl" size="md" onClick={() => logInWithEmailAndPassword(email, password)}>Entrar</Button>
