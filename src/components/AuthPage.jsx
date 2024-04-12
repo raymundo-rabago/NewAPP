@@ -10,7 +10,7 @@ import { Paper, TextInput, PasswordInput, Button, Title } from '@mantine/core';
 
 import classes from './AuthPage.module.css';
 
-export function AuthPage() {
+export default function AuthPage() {
 
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
@@ -32,7 +32,7 @@ export function AuthPage() {
                 </Title>
                 <TextInput label="Correo Electrónico" placeholder="ejemplo@correo.com" size="md" value={email} onChange={(e) => setEmail(e.target.value)} />
                 <PasswordInput label="Password" placeholder="Contraseña" mt="md" size="md" value={password} onChange={(e) => setPassword(e.target.value)}/>
-                <Button fullWidth mt="xl" size="md" onClick={() => signInWithEmailAndPassword(email, password)}>Entrar</Button>
+                <Button fullWidth mt="xl" size="md" onClick={() => logInWithEmailAndPassword(email, password)}>Entrar</Button>
             </Paper>
         </div>
     )
