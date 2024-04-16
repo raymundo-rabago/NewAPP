@@ -8,8 +8,6 @@ import { Listing } from './Listing';
 
 export default function AdminPage() {
 
-  const ApiUrl = 'https://api.notion.com/v1/databases/{database_id}/query';
-
   const [user, loading, error] = useAuthState(auth);
   const [name, setName] = useState("");
   const navigate = useNavigate();
