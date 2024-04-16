@@ -5,7 +5,14 @@ function Listing() {
 
   return (
     <div className="Listing">
-      <table>Data Table</table>
+      <table>
+        <thead>
+          <tr><td>Data Title</td></tr>
+        </thead>
+        <tbody>
+          <tr><td>Data Content</td></tr>
+        </tbody>
+      </table>
     </div>
   );
 }
