@@ -27,13 +27,18 @@ export default function AuthPage() {
 
     return (
         <Card color="transparent" shadow={false}>
-            <img src="/assets/imgs" className="m-auto" />
+            <div class="flex flex-col items-center justify-center max-w-xl gap-3 mx-auto lg:flex-row">
+                <img src='/assets/imgs' class='w-32 h-32' />
+            </div>
             <form className="mt-8 mb-2 w-80 max-w-screen-lg sm:w-96">
                 <div className="mb-1 flex flex-col gap-6">
                     <Typography variant="h6" className="-mb-3">Usuario</Typography>
                     <TextInput placeholder="ejemplo@correo.com" type="email" value={email} onChange={(e) => setEmail(e.target.value)} />
                     <Typography variant="h6" className="-mb-3">Contraseña</Typography>
                     <TextInput placeholder="Contraseña" type="password" value={password} onChange={(e) => setPassword(e.target.value)} />
+                    <div class="text-right mt-2">
+                      <a href="#" class="text-sm font-semibold text-zinc-500 hover:text-yellow-700 focus:text-yellow-700">Olvidaste la contraseña?</a>
+                    </div>
                     <Button type="submit" variant="primary"  onClick={() => logInWithEmailAndPassword(email, password)} >Entrar</Button>
             </form>
         </Card>
