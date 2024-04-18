@@ -3,6 +3,7 @@
 
 import { initializeApp } from "firebase/app";
 import { getAuth, signInWithEmailAndPassword, sendPasswordResetEmail, signOut } from "firebase/auth";
+import { getFirestore, collection, getDocs, onSnapshot, addDoc, deleteDoc, doc, getDoc, updateDoc, } from "firebase/firestore";
 
 const firebaseConfig = {
   apiKey: import.meta.env.VITE_API_KEY,
@@ -15,6 +16,7 @@ const firebaseConfig = {
 
 export const app = initializeApp(firebaseConfig);
 export const auth = getAuth(app);
+export const db = getFirestore();
 
 // AUTH FUNCTIONS
 export const logInWithEmailAndPassword = async (email, password) => {
@@ -55,3 +57,11 @@ export async function getUserPublicProfileInfo(uid) {
     links: linksInfo,
   };
 }
+
+// CRUD FUNCTIONS
+export const saveProduct = (title, description) => addDoc(collection(db, "ventas"), { title, description });
+export const onGetProduct = (callback) => onSnapshot(collection(db, "ventas"), callback);
+export const deleteProduct = (id) => deleteDoc(doc(db, "ventas", id));
+export const getProduct = (id) => getDoc(doc(db, "ventas", id));
+export const updateProduct = (id, newFields) => updateDoc(doc(db, "ventas", id), newFields);
+export const getProducts = () => getDocs(collection(db, "ventas"));

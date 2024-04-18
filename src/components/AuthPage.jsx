@@ -1,15 +1,10 @@
 
 import React, { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-
 import { auth, logInWithEmailAndPassword } from "../firebase";
-
 import { useAuthState } from "react-firebase-hooks/auth";
 
-import { Card, Input, Checkbox, Typography } from "@material-tailwind/react";
-
-import { TextInput } from '@tremor/react';
-import { Button } from '@tremor/react';
+import { FiLogIn } from "react-icons/fi";
 
 export default function AuthPage() {
 
@@ -26,21 +21,18 @@ export default function AuthPage() {
     }, [user, loading]);
 
     return (
-        <Card color="transparent" shadow={false}>
-            <div class="flex flex-col items-center justify-center max-w-xl gap-3 mx-auto lg:flex-row">
-                <img src='/assets/imgs' class='w-32 h-32' />
+        <main className="page_wrapper">
+            <div className="card card_login">
+                <img width="88px" height="auto" src='/assets/imgs' alt="Soluxe SUnglasses Logo" class='logo' />
+                <form>
+                    <label for="email">Usuario</label>
+                    <input name="email" placeholder="ejemplo@correo.com" type="email" value={email} onChange={(e) => setEmail(e.target.value)} />
+                    <label for="password">Contraseña</label>
+                    <input name="password" placeholder="Contraseña" type="password" value={password} onChange={(e) => setPassword(e.target.value)} />
+                    <button type="submit" onClick={() => logInWithEmailAndPassword(email, password)}>Entrar <FiLogIn /></button>
+                    <Link to="/reset" >¿Olvidaste la Contraseña?</Link>
+                </form>
             </div>
-            <form className="mt-8 mb-2 w-80 max-w-screen-lg sm:w-96">
-                <div className="mb-1 flex flex-col gap-6">
-                    <Typography variant="h6" className="-mb-3">Usuario</Typography>
-                    <TextInput placeholder="ejemplo@correo.com" type="email" value={email} onChange={(e) => setEmail(e.target.value)} />
-                    <Typography variant="h6" className="-mb-3">Contraseña</Typography>
-                    <TextInput placeholder="Contraseña" type="password" value={password} onChange={(e) => setPassword(e.target.value)} />
-                    <div class="text-right mt-2">
-                      <a href="#" class="text-sm font-semibold text-zinc-500 hover:text-yellow-700 focus:text-yellow-700">Olvidaste la contraseña?</a>
-                    </div>
-                    <Button type="submit" variant="primary"  onClick={() => logInWithEmailAndPassword(email, password)} >Entrar</Button>
-            </form>
-        </Card>
+        </main>
     )
 };

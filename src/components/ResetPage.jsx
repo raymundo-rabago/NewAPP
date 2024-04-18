@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
-import { useNavigate } from "react-router-dom";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { auth, sendPasswordReset } from "../firebase";
 
 
@@ -17,14 +16,14 @@ function ResetPage() {
   }, [user, loading]);
 
   return (
-    <div className="reset">
-      <div className="reset__container">
-        <input type="text" className="reset__textBox" value={email} onChange={(e) => setEmail(e.target.value)} placeholder="E-mail Address" />
-        <button className="reset__btn" onClick={() => sendPasswordReset(email)} >
-          Send password reset email
-        </button>
+    <main className="page_wrapper">
+      <div className="card card_login">
+        <form>
+        <label for="user-email">Correo Electronico</label>
+        <input name="user-email" type="email" className="reset__textBox" value={email} onChange={(e) => setEmail(e.target.value)} placeholder="E-mail Address" />
+        <button type="submit" className="reset__btn" onClick={() => sendPasswordReset(email)} >Solicitar nueva contraseña</button>
       </div>
-    </div>
+    </main>
   );
 }
 

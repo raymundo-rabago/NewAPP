@@ -4,7 +4,9 @@ import { useNavigate } from "react-router-dom";
 
 import { auth, logout } from "../firebase";
 
+import { Logout } from './Logout';
 import { Listing } from './Listing';
+import { Footer } from './Footer';
 
 export default function AdminPage() {
 
@@ -20,25 +22,14 @@ export default function AdminPage() {
 
   return (
     <div className="pageWrapper">
-        <aside>
-          
-        </aside>
-        <main>
-          <header>
-            <a onClick={logout}><span>Salir</span></a>
-            <h1>Admin Page</h1>
-          </header>
-          <section>
-          </section>
-          
-          <Listing />
-          
-          <footer className="flex w-full flex-row flex-wrap items-center justify-end gap-y-6 gap-x-12 border-t border-blue-gray-50 py-6 text-right md:justify-between">
-            <Typography color="yellow-600" className="font-normal">&copy; 2024 Material Tailwind</Typography>
-          </footer>
-        </main>
-
-        
+      <header>
+        <Logout />
+        <h1>Listado de Ventas</h1>
+      </header>
+      <main>
+        <Listing />
+      </main>
+      <Footer />
     </div>
   );
 

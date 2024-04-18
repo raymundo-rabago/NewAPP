@@ -5,14 +5,10 @@ import { App } from './App.jsx';
 
 import 'index.css';
 
-import { ThemeProvider } from "@material-tailwind/react";
-
 const root = createRoot(document.getElementById('root'));
 
 root.render(
   <React.StrictMode>
-    <ThemeProvider>
       <App />
-    </ThemeProvider>
   </React.StrictMode>
 );
