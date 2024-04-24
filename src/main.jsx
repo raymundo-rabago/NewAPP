@@ -3,15 +3,15 @@ import React from 'react';
 import { createRoot } from 'react-dom/client';
 import { App } from './App.jsx';
 
-import { GeistProvider, CssBaseline } from '@geist-ui/core';
+import '@radix-ui/themes/styles.css';
+import { Theme } from '@radix-ui/themes';
 
 const root = createRoot(document.getElementById('root'));
 
 root.render(
   <React.StrictMode>
-    <GeistProvider>
-      <CssBaseline />
+    <Theme appearance="light" accentColor="gray" radius="small" grayColor="slate" scaling="90%">
       <App />
-    </GeistProvider>
+    </Theme>
   </React.StrictMode>
 );
