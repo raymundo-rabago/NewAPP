@@ -6,9 +6,6 @@ import ResetPage from './components/ResetPage';
 import ResetPage from './components/AddProduct';
 import AdminPage from './components/AdminPage';
 
-
-
-
 export function App() {
   return (
     <Router>

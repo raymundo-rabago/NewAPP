@@ -1,7 +1,7 @@
 import React from 'react';
 import { auth, logout } from "../firebase";
 
-import { MoreVertical, LogOut  } from '@geist-ui/icons'
+
 
 
 

@@ -9,7 +9,8 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "@radix-ui/themes": "^3.0.2",
+    "antd": "^5.16.4",
+    "antd-mobile": "^5.35.0",
     "axios": "^1.6.8",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",

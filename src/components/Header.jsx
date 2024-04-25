@@ -5,7 +5,7 @@ const Header = () => {
   
   return (
 
-    <Grid>
+    <Box>
       <Grid.Container>
       <ButtonDropdown type="secondary" scale={0.5} >
         <ButtonDropdown.Item>Ventas</ButtonDropdown.Item>
@@ -13,7 +13,7 @@ const Header = () => {
         <ButtonDropdown.Item>Salir</ButtonDropdown.Item>
       </ButtonDropdown>
       </Grid.Container>
-    </Grid>
+    </Box>
 
   )
 

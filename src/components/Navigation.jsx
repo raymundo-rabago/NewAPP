@@ -14,4 +14,4 @@ const Menu = () => {
 
 }
 
-export default Menu
+export default Menu;
