@@ -1,7 +1,7 @@
 
 import React, { useState } from 'react';
 
-function Listing() {
+export const Listing = () => {
 
   return (
     <div className="Listing">
@@ -18,5 +18,3 @@ function Listing() {
     </div>
   );
 }
-
-export default Listing;

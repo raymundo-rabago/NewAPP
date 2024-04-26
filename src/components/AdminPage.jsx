@@ -1,13 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { useNavigate } from "react-router-dom";
-import { Flex, Layout, Space } from 'antd';
-
 import { auth, logout } from "../firebase";
-
+import { Header } from './Header';
 import { Listing } from './Listing';
 
-const { Header, Footer, Content } = Layout;
 
 export default function AdminPage() {
 
@@ -23,9 +20,7 @@ export default function AdminPage() {
 
   return (
     <div className="pageWrapper">
-      <Header>
-        <h1>Listado de Ventas</h1>
-      </Header>
+      <Header />
       <Content>
         <Listing />
       </Content>

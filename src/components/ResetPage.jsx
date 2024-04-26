@@ -19,9 +19,10 @@ function ResetPage() {
     <main className="page_wrapper">
       <div className="card card_login">
         <form>
-        <label for="user-email">Correo Electronico</label>
-        <input name="user-email" type="email" className="reset__textBox" value={email} onChange={(e) => setEmail(e.target.value)} placeholder="E-mail Address" />
-        <button type="submit" className="reset__btn" onClick={() => sendPasswordReset(email)} >Solicitar nueva contraseña</button>
+          <label for="user-email">Correo Electronico</label>
+          <input name="user-email" type="email" className="reset__textBox" value={email} onChange={(e) => setEmail(e.target.value)} placeholder="E-mail Address" />
+          <button type="submit" className="reset__btn" onClick={() => sendPasswordReset(email)} >Solicitar nueva contraseña</button>
+        </form>
       </div>
     </main>
   );
