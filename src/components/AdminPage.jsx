@@ -2,9 +2,10 @@ import React, { useEffect, useState } from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { useNavigate } from "react-router-dom";
 import { auth, logout } from "../firebase";
+
 import { Header } from './Header';
 import { Listing } from './Listing';
-
+import { Footer } from './Footer';
 
 export default function AdminPage() {
 
@@ -21,9 +22,9 @@ export default function AdminPage() {
   return (
     <div className="pageWrapper">
       <Header />
-      <Content>
+      <main>
         <Listing />
-      </Content>
+      </main>
       <Footer />
     </div>
   );

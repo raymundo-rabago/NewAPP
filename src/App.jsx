@@ -2,7 +2,6 @@
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 
 import AuthPage from './components/AuthPage';
-import ResetPage from './components/ResetPage';
 import AdminPage from './components/AdminPage';
 
 export function App() {
@@ -11,7 +10,6 @@ export function App() {
     <Router>
       <Routes>
         <Route exact path="/" element={<AuthPage />} />
-        <Route exact path="/reset" element={<ResetPage />} />
         <Route exact path="/admin" element={<AdminPage />} />
       </Routes>
     </Router>

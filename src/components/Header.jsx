@@ -1,8 +1,8 @@
 import React from 'react';
 import { NavLink } from "react-router-dom";
 
-import { Navbar, Typography, Button, IconButton, Menu, MenuList, MenuItem } from "@material-tailwind/react";
-import { ChevronDownIcon, Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
+import { Navbar, Typography, Button, IconButton, Menu, MenuList, MenuItem, MenuHandler } from "@material-tailwind/react";
+import { ChevronDownIcon } from "@heroicons/react/24/outline";
 
 export const Header = () => {
 
@@ -13,7 +13,7 @@ export const Header = () => {
         <div className="py-1.5">
           <Menu placement="bottom-end">
             <MenuHandler>
-              <Button>Menu</Button>
+              <Button>Menu <ChevronDownIcon /></Button>
             </MenuHandler>
             <MenuList>
               <MenuItem>Ventas</MenuItem>

@@ -1,20 +1,24 @@
 
 import React, { useState } from 'react';
+import { Drawer, Button, Typography, IconButton, Typography } from "@material-tailwind/react";
 
 export const Listing = () => {
 
   return (
-    <div className="Listing">
-      <h3>Listado de Ventas</h3>
-      <Link to="/registro" className="btn_app">Añadir Registro</Link>
-      <table>
-        <thead>
-          <tr><td>Data Title</td></tr>
-        </thead>
-        <tbody>
-          <tr><td>Data Content</td></tr>
-        </tbody>
-      </table>
-    </div>
+    <section id="Ventas">
+      <div>
+        <Typographi variant="h2">Listado de Ventas</>
+      </div>
+      <div>
+        <table>
+          <thead>
+            <tr><td>Data Title</td></tr>
+          </thead>
+          <tbody>
+            <tr><td>Data Content</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
   );
 }
