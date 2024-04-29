@@ -11,6 +11,7 @@ export function App() {
       <Routes>
         <Route exact path="/" element={<AuthPage />} />
         <Route exact path="/admin" element={<AdminPage />} />
+        <Route exact path="/clientes" element={<ClientPage />} />
       </Routes>
     </Router>
   );
