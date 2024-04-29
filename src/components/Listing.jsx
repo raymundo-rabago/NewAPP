@@ -1,24 +1,26 @@
 
 import React, { useState } from 'react';
-import { Drawer, Button, Typography, IconButton, Typography } from "@material-tailwind/react";
+import { Drawer, Button, Typography, IconButton } from "@material-tailwind/react";
 
 export const Listing = () => {
 
   return (
-    <section id="Ventas">
-      <div>
-        <Typographi variant="h2">Listado de Ventas</>
+    <main id="Ventas" className='p-3 flex-col h-full'>
+      <div className='container-lg'>
+        <div>
+          <Typography variant="h2">Listado de Ventas</Typography>
+        </div>
+        <div>
+          <table>
+            <thead>
+              <tr><td>Data Title</td></tr>
+            </thead>
+            <tbody>
+              <tr><td>Data Content</td></tr>
+            </tbody>
+          </table>
+        </div>
       </div>
-      <div>
-        <table>
-          <thead>
-            <tr><td>Data Title</td></tr>
-          </thead>
-          <tbody>
-            <tr><td>Data Content</td></tr>
-          </tbody>
-        </table>
-      </div>
-    </section>
+    </main>
   );
 }

@@ -22,9 +22,7 @@ export default function AdminPage() {
   return (
     <div className="pageWrapper">
       <Header />
-      <main>
-        <Listing />
-      </main>
+      <Listing />
       <Footer />
     </div>
   );
