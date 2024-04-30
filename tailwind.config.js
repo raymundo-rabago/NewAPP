@@ -3,12 +3,15 @@ const withMT = require("@material-tailwind/react/utils/withMT");
  
 module.exports = withMT({
   content: ["./index.html", "./src/**/*.{vue,js,ts,jsx,tsx}"],
+  
   theme: {
     extend: {},
-  },
-  plugins: [
-    require('@tailwindcss/forms'),
-  ],
+    fontFamily: {
+      sans: [ 'system-ui', 'sans-serif'],
+      serif: ['Iowan Old Style', 'Palatino Linotype', 'URW Palladio L', 'P052', 'serif'],
+      body: [ 'system-ui', 'sans-serif']
+    },
+  }
 });
 
 export default {

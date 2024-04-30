@@ -4,6 +4,7 @@
 import { initializeApp } from "firebase/app";
 import { getAuth, signInWithEmailAndPassword, sendPasswordResetEmail, signOut } from "firebase/auth";
 import { getFirestore, collection, getDocs, onSnapshot, addDoc, deleteDoc, doc, getDoc, updateDoc, } from "firebase/firestore";
+import { toast } from 'sonner';
 
 const firebaseConfig = {
   apiKey: import.meta.env.VITE_API_KEY,
@@ -24,7 +25,8 @@ export const logInWithEmailAndPassword = async (email, password) => {
     await signInWithEmailAndPassword(auth, email, password);
   } catch (err) {
     console.error(err);
-    alert(err.message);
+    toast.error('Error de Autenticación... intentalo de nuevo');
+    //alert(err.message);
   }
 };
 

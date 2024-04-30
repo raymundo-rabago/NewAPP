@@ -8,7 +8,7 @@ export const Listing = () => {
     <main id="Ventas" className='p-3 flex-col h-full'>
       <div className='container-lg'>
         <div>
-          <Typography variant="h2">Listado de Ventas</Typography>
+          <Typography variant="h4">Listado de Ventas</Typography>
         </div>
         <div>
           <table>

@@ -8,11 +8,11 @@ export const Header = () => {
   return (
     <Navbar className="mx-auto px-4 py-2 rounded-none">
       <div className="flex items-center justify-between text-gray-900">
-        <Typography as="a" href="/" variant="h6" className="mr-4 cursor-pointer py-1.5">Admin App</Typography>
+        <img src="./soluxe.svg" className='w-28' />
         <div className="py-1.5">
           <Menu placement="bottom-end">
-            <MenuHandler>
-              <Button>Menu</Button>
+            <MenuHandler allowHover>
+              <Button variant="outlined" size="sm">Menu</Button>
             </MenuHandler>
             <MenuList>
               <MenuItem>Ventas</MenuItem>
