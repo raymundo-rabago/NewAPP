@@ -8,7 +8,7 @@ module.exports = withMT({
     extend: {},
     fontFamily: {
       sans: [ 'system-ui', 'sans-serif'],
-      serif: ['Iowan Old Style', 'Palatino Linotype', 'URW Palladio L', 'P052', 'serif'],
+      serif: ['Didot', 'Bodoni MT', 'Noto Serif Display', 'URW Palladio L', 'P052', 'Sylfaen', 'serif'],
       body: [ 'system-ui', 'sans-serif']
     },
   }

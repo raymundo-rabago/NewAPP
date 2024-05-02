@@ -1,26 +1,16 @@
 import React from 'react';
-
-import { Navbar, Typography, Button, IconButton, Menu, MenuList, MenuItem, MenuHandler } from "@material-tailwind/react";
-import { ChevronDownIcon } from "@heroicons/react/24/outline";
+import { auth, logout } from "../firebase";
+import { Navbar, Typography, Button } from "@material-tailwind/react";
+import { IoPower } from 'react-icons/io5';
 
 export const Header = () => {
 
   return (
-    <Navbar className="mx-auto px-4 py-2 rounded-none">
+    <Navbar className="mx-auto max-w-full px-4 py-2 rounded-none">
       <div className="flex items-center justify-between text-gray-900">
         <img src="./soluxe.svg" className='w-28' />
         <div className="py-1.5">
-          <Menu placement="bottom-end">
-            <MenuHandler allowHover>
-              <Button variant="outlined" size="sm">Menu</Button>
-            </MenuHandler>
-            <MenuList>
-              <MenuItem>Ventas</MenuItem>
-              <MenuItem>Clientes</MenuItem>
-              <hr className="my-2" />
-              <MenuItem>Salir</MenuItem>
-            </MenuList>
-          </Menu>
+          <Button variant="outlined" color="gray" size="sm" className="capitalize rounded-full flex items-center gap-3" onClick={logout}>Salir <IoPower /></Button>
         </div>
       </div>
     </Navbar>

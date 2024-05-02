@@ -30,40 +30,16 @@ export const logInWithEmailAndPassword = async (email, password) => {
   }
 };
 
-export const sendPasswordReset = async (email) => {
-  try {
-    await sendPasswordResetEmail(auth, email);
-    alert("Password reset link sent!");
-  } catch (err) {
-    console.error(err);
-    alert(err.message);
-  }
-};
 
 export const logout = async () => {
   await signOut(auth);
 };
 
-// USERS FUNCTIONS
-export async function getUserInfo(uid) {
-  const docRef = doc(db, "users", uid);
-  const docSnap = await getDoc(docRef);
-  return docSnap.data();
-}
-
-export async function getUserPublicProfileInfo(uid) {
-  const profileInfo = await getUserInfo(uid);
-  const linksInfo = await fetchLinkData(uid);
-  return {
-    profile: profileInfo,
-    links: linksInfo,
-  };
-}
 
 // CRUD FUNCTIONS
-export const saveProduct = (title, description) => addDoc(collection(db, "ventas"), { title, description });
-export const onGetProduct = (callback) => onSnapshot(collection(db, "ventas"), callback);
-export const deleteProduct = (id) => deleteDoc(doc(db, "ventas", id));
-export const getProduct = (id) => getDoc(doc(db, "ventas", id));
-export const updateProduct = (id, newFields) => updateDoc(doc(db, "ventas", id), newFields);
-export const getProducts = () => getDocs(collection(db, "ventas"));
+export const saveProduct = (title, description) => addDoc(collection(db, "Ventas"), { title, description });
+export const onGetProduct = (callback) => onSnapshot(collection(db, "Ventas"), callback);
+export const deleteProduct = (id) => deleteDoc(doc(db, "Ventas", id));
+export const getProduct = (id) => getDoc(doc(db, "Ventas", id));
+export const updateProduct = (id, newFields) => updateDoc(doc(db, "Ventas", id), newFields);
+export const getProducts = () => getDocs(collection(db, "Ventas"));

@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 
 import AuthPage from './components/AuthPage';
 import AdminPage from './components/AdminPage';
-import ClientPage from './components/ClientPage';
+import AddProduct from './components/AddProduct';
 
 export function App() {
 
@@ -12,7 +12,7 @@ export function App() {
       <Routes>
         <Route exact path="/" element={<AuthPage />} />
         <Route exact path="/admin" element={<AdminPage />} />
-        <Route exact path="/clientes" element={<ClientPage />} />
+        <Route exact path="/registro" element={<AddProduct />} />
       </Routes>
     </Router>
   );
