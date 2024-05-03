@@ -17,7 +17,7 @@ const firebaseConfig = {
 
 export const app = initializeApp(firebaseConfig);
 export const auth = getAuth(app);
-export const db = getFirestore();
+export const db = getFirestore(app);
 
 // AUTH FUNCTIONS
 export const logInWithEmailAndPassword = async (email, password) => {
