@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
  
-const Footer = () => {
+const Create = () => {
 
     const [product, setProduct] = useState("")
+
     const addProduct = (e) => {e.preventDefault();}
 
     return (
