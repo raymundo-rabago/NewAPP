@@ -7,9 +7,31 @@ import { getSales, updateSale } from "../firebase";
 
 export const Listing = () => {
 
-  const row = () => [];
-  const [data, setData] = useState([row()]);
-  const update = () => { };
+
+  new Grid(){
+    columns: ['Fecha', 'Modelo', 'Precio','Cliente', 'Pagado', 'Accion'],
+    search: true,
+    data : [],
+    pagination: {
+      limit: 3,
+      summary: false
+    },
+    fixedHeader: true,
+    language: {
+      'search': {
+        'placeholder': 'Buscar...'
+      },
+      'pagination': {
+        'previous': 'Anterior',
+        'next': 'Siguiente',
+        'showing': 'Mostrando',
+        'results': () => 'Resultados'
+      }
+    }
+  }
+
+
+
 
   return (
     <main id="Ventas" className='p-4 flex-col h-full'>
@@ -21,38 +43,16 @@ export const Listing = () => {
           </div>
         </div>
         <div className='py-4'>
-          <Grid
-            data={[
-              ['John', 'john@example.com'],
-              ['Mike', 'mike@gmail.com']
-            ]}
-            columns={['Name', 'Email']}
+          <Grid data={}
+            columns={['Fecha', 'Modelo', 'Precio','Cliente', 'Pagado', 'Accion']}
             search={true}
             pagination={{
-              limit: 1,
+              limit: 3,
             }}
           />
         </div>
       </div>
     </main>
-    /*
-      <ul>
-          <li>Modelo</li>
-          <li>Fecha</li>
-          <li>Descripcion</li>
-          <li>Cliente</li>
-          <li>Precio</li>
-          <li>Baja</li>
-          <li>Ticket</li>
-          <li>Factura</li>
-          <li>Soluxe</li>
-          <li>Soluxeda</li>
-          <li>Apartado</li>
-          <li>Credito</li>
-          <li>Facturacion</li>
-          <li>Pago</li>
-          <li>Imagen</li>
-      </ul>
-    */
+
   );
 }
