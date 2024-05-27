@@ -1,12 +1,15 @@
-
 import React, { useState } from 'react';
 import { Drawer, Button, Typography, IconButton } from "@material-tailwind/react";
 import { Grid } from 'gridjs-react';
 import { IoAddCircle } from 'react-icons/io5';
 
-import { getProducts, updateProduct } from "../firebase";
+import { getSales, updateSale } from "../firebase";
 
 export const Listing = () => {
+
+  const row = () => [];
+  const [data, setData] = useState([row()]);
+  const update = () => { };
 
   return (
     <main id="Ventas" className='p-4 flex-col h-full'>
@@ -32,5 +35,24 @@ export const Listing = () => {
         </div>
       </div>
     </main>
+    /*
+      <ul>
+          <li>Modelo</li>
+          <li>Fecha</li>
+          <li>Descripcion</li>
+          <li>Cliente</li>
+          <li>Precio</li>
+          <li>Baja</li>
+          <li>Ticket</li>
+          <li>Factura</li>
+          <li>Soluxe</li>
+          <li>Soluxeda</li>
+          <li>Apartado</li>
+          <li>Credito</li>
+          <li>Facturacion</li>
+          <li>Pago</li>
+          <li>Imagen</li>
+      </ul>
+    */
   );
 }

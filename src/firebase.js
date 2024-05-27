@@ -1,5 +1,6 @@
 // https://github.com/tylermcginnis/react-router-firebase-auth/tree/master/src
 // https://blog.logrocket.com/user-authentication-firebase-react-apps/
+// https://github.com/GoZaddy/Firebase-auth-article
 
 import { initializeApp } from "firebase/app";
 import { getAuth, signInWithEmailAndPassword, sendPasswordResetEmail, signOut } from "firebase/auth";
@@ -37,9 +38,23 @@ export const logout = async () => {
 
 
 // CRUD FUNCTIONS
-export const saveProduct = (title, description) => addDoc(collection(db, "Ventas"), { title, description });
-export const onGetProduct = (callback) => onSnapshot(collection(db, "Ventas"), callback);
-export const deleteProduct = (id) => deleteDoc(doc(db, "Ventas", id));
-export const getProduct = (id) => getDoc(doc(db, "Ventas", id));
-export const updateProduct = (id, newFields) => updateDoc(doc(db, "Ventas", id), newFields);
-export const getProducts = () => getDocs(collection(db, "Ventas"));
+export const saveSale = (title, description) => addDoc(collection(db, "Ventas"), { title, description });
+export const onGetSale = (callback) => onSnapshot(collection(db, "Ventas"), callback);
+export const deleteSale = (id) => deleteDoc(doc(db, "Ventas", id));
+export const getSale = (id) => getDoc(doc(db, "Ventas", id));
+export const updateSale = (id, newFields) => updateDoc(doc(db, "Ventas", id), newFields);
+export const getSales = () => getDocs(collection(db, "Ventas"));
+
+/*
+  Apartado
+  Baja
+  Cliente
+  Comentario
+  Credito
+  Descripcion
+  Facturacion
+  Fecha
+  Folio
+  Modelo
+  Precio
+*/

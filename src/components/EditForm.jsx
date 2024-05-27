@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
  
-const Create = () => {
+const EditForm = () => {
 
     const [product, setProduct] = useState("")
 
@@ -31,4 +31,4 @@ const Create = () => {
 
 }
 
-export default Footer
+export default EditForm;

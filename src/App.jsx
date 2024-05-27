@@ -12,8 +12,6 @@ export function App() {
       <Routes>
         <Route exact path="/" element={<AuthPage />} />
         <Route exact path="/admin" element={<AdminPage />} />
-        <Route exact path='/create' element={ <Create /> } />
-        <Route exact path='/edit/:id' element={ <Edit /> } />
       </Routes>
     </Router>
   );
