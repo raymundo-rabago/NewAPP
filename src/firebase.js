@@ -5,6 +5,7 @@
 import { initializeApp } from "firebase/app";
 import { getAuth, signInWithEmailAndPassword, sendPasswordResetEmail, signOut } from "firebase/auth";
 import { getFirestore, collection, getDocs, onSnapshot, addDoc, deleteDoc, doc, getDoc, updateDoc, } from "firebase/firestore";
+
 import { toast } from 'sonner';
 
 const firebaseConfig = {
@@ -35,26 +36,3 @@ export const logInWithEmailAndPassword = async (email, password) => {
 export const logout = async () => {
   await signOut(auth);
 };
-
-
-// CRUD FUNCTIONS
-export const saveSale = (title, description) => addDoc(collection(db, "Ventas"), { title, description });
-export const onGetSale = (callback) => onSnapshot(collection(db, "Ventas"), callback);
-export const deleteSale = (id) => deleteDoc(doc(db, "Ventas", id));
-export const getSale = (id) => getDoc(doc(db, "Ventas", id));
-export const updateSale = (id, newFields) => updateDoc(doc(db, "Ventas", id), newFields);
-export const getSales = () => getDocs(collection(db, "Ventas"));
-
-/*
-  Apartado
-  Baja
-  Cliente
-  Comentario
-  Credito
-  Descripcion
-  Facturacion
-  Fecha
-  Folio
-  Modelo
-  Precio
-*/
