@@ -3,8 +3,8 @@
 // https://github.com/GoZaddy/Firebase-auth-article
 
 import { initializeApp } from "firebase/app";
-import { getAuth, signInWithEmailAndPassword, sendPasswordResetEmail, signOut } from "firebase/auth";
-import { getFirestore, collection, getDocs, onSnapshot, addDoc, deleteDoc, doc, getDoc, updateDoc, } from "firebase/firestore";
+import { getAuth, signInWithEmailAndPassword, signOut } from "firebase/auth";
+import { getFirestore } from "firebase/firestore";
 
 import { toast } from 'sonner';
 
@@ -31,7 +31,6 @@ export const logInWithEmailAndPassword = async (email, password) => {
     //alert(err.message);
   }
 };
-
 
 export const logout = async () => {
   await signOut(auth);

@@ -1,25 +1,22 @@
 
 import React, { useState, useEffect } from 'react';
 import { db } from "../firebase";
+import { collection, getDocs } from "firebase/firestore";
 
-function VentasTabla() {
-  const [ventas, setVentas] = useState([]);
-  //const db = firebase.firestore();
+export const VentasTabla = () => {
+
+  const [data, setData] = useState();
 
   useEffect(() => {
-    const fetchVentas = async () => {
-      try {
-        const ventasSnapshot = await db.collection('ventas').get();
-        const ventasData = ventasSnapshot.docs.map((doc) => doc.data());
-        setLibros(ventasData);
-      } catch (error) {
-        console.error(error);
-      }
-    };
-    fetchVentas();
+    async function getVentas(){
+      const ventas = collection(db, 'Ventas');
+      const data = await getDocs(ventas);
+      // setData(data.docs.map((doc) => ({ id: doc.id, ...doc.data() })));
+    }
   }, []);
 
   return (
+
     <table>
       <thead>
         <tr>
@@ -40,7 +37,6 @@ function VentasTabla() {
         ))}
       </tbody>
     </table>
+
   );
 }
-
-export default VentasTabla;
