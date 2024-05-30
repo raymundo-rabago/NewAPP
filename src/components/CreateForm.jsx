@@ -13,7 +13,6 @@ const CreateForm = () => {
                     <Input type="date" variant="outlined" size="lg" label="Fecha" placeholder="Dia/Mes/Año" color="gray" value={ } onChange={ } />
                     <Input type="text" variant="outlined" size="lg" label="Modelo" placeholder=" " color="gray" value={ } onChange={ } />
                     <Input type="text" variant="outlined" size="lg" label="Modelo" placeholder=" " color="gray" value={ } onChange={ } />
-                    
                 </div>
                 <Button fullWidth ripple={true} variant="filled" size="lg" className="mt-8 flex items-center text-center justify-center gap-2" onClick={ } >
                     Registrar
@@ -24,19 +23,11 @@ const CreateForm = () => {
             <ul>
                 <li>Modelo</li>
                 <li>Fecha</li>
-                <li>Descripcion</li>
                 <li>Cliente</li>
                 <li>Precio</li>
-                <li>Baja</li>
-                <li>Ticket</li>
-                <li>Factura</li>
-                <li>Soluxe</li>
-                <li>Soluxeda</li>
-                <li>Apartado</li>
-                <li>Credito</li>
-                <li>Facturacion</li>
-                <li>Pago</li>
-                <li>Imagen</li>
+                <li>Folio</li>
+                <li>Estado</li>
+                <li>Notas</li>
             </ul>
 
         </>

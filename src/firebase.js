@@ -8,6 +8,8 @@ import { getFirestore } from "firebase/firestore";
 
 import { toast } from 'sonner';
 
+let instance;
+
 const firebaseConfig = {
   apiKey: import.meta.env.VITE_API_KEY,
   authDomain: import.meta.env.VITE_AUTH_DOMAIN,
@@ -35,3 +37,13 @@ export const logInWithEmailAndPassword = async (email, password) => {
 export const logout = async () => {
   await signOut(auth);
 };
+
+
+export const getFirebase = () => {
+  if (typeof window !== "undefined") {
+    if (instance) return instance;
+    instance = initializeApp(firebaseConfig);
+    return instance;
+  }
+  return null;
+}
