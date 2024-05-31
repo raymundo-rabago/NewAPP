@@ -1,10 +1,10 @@
 
 import React, { useEffect, useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { auth, logInWithEmailAndPassword } from "../firebase";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { Toaster } from 'sonner';
-import { Card, CardBody, Input, Checkbox, Button, Typography } from "@material-tailwind/react";
+import { Card, CardBody, Input, Button, Typography } from "@material-tailwind/react";
 
 const currentYear = new Date().getFullYear();
 

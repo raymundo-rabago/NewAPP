@@ -1,66 +1,97 @@
 
-// https://dev.to/debosthefirst/firebase-functions-to-build-a-serverless-crud-app-34kl
-import React, { useState, useEffect } from 'react';
-import { Button } from "@material-tailwind/react";
-import { IoEllipsisVertical } from 'react-icons/io5';
-import { Table, TableBody, TableCaption, TableCell, TableHead, TableHeader, TableFooter, TableRow } from "@/components/ui/table";
-import { collection, doc, getDoc, getDocs } from "firebase/firestore";
-import { db } from "../firebase";
+// https://github.com/vensi9/crud-operation-with-react.js-axios/blob/main/src/components/Read.js#L4
+import React, {useState, useEffect}from 'react';
+import { Card, Typography } from "@material-tailwind/react";
+import { IoCreateOutline } from 'react-icons/io5';
+
+import axios from 'axios';
 
 export const VentasTabla = () => {
 
-  const collectionName = "Ventas";
-  const getVentas = () => getDocs(collection(db, collectionName));
-  const getVenta = (id) => getDoc(doc(db, collectionName, id));
+  const api_url = 'https://api.sheetapi.rest/api/v1/sheet/gsgBKGkQLZhF6NzKDxc4Y';
+  const columns = ['Fecha','Modelo','Precio',''];
 
-  const [ventas, setVentas] = useState([]);
-
-  const getLista = async () => {
-    const querySnapshot = await getVentas();
-    // onGetLinks((querySnapshot) => {
-    const docs = [];
-    querySnapshot.forEach((doc) => {
-      docs.push({ ...doc.data(), id: doc.id });
-    });
-    setVentas(docs);
-    // });
-  };
+  const [APIData, setAPIData] = useState([]);
 
   useEffect(() => {
-    getLista();
+    axios.get(api_url)
+      .then((response) => {
+        setAPIData(response.data);
+      })
   }, []);
 
+  const setData = (data) => {
+    let { id, firstName, lastName, checkbox } = data;
+    localStorage.setItem('ID', id);
+    localStorage.setItem('First Name', firstName);
+    localStorage.setItem('Last Name', lastName);
+    localStorage.setItem('Checkbox Value', checkbox)
+  }
+
+  const getData = () => {
+    axios.get(api_url)
+      .then((getData) => {
+        setAPIData(getData.data);
+      })
+  }
+
   return (
-
-    <Table>
-      <TableCaption>No hay datos disponibles en este momento</TableCaption>
-      <TableHeader>
-        <TableRow>
-          <TableHead className="w-[100px]">Fecha</TableHead>
-          <TableHead>Modelo</TableHead>
-          <TableHead>Precio</TableHead>
-          <TableHead>Cliente</TableHead>
-          <TableHead className="text-right">Edit</TableHead>
-        </TableRow>
-      </TableHeader>
-      <TableBody>
-        {ventas.map((id => (
-          <TableRow key={id}>
-            <TableCell className="font-medium">{ventas.Fecha}</TableCell>
-            <TableCell>{ventas.Modelo}</TableCell>
-            <TableCell>{ventas.Precio}</TableCell>
-            <TableCell>{ventas.Cliente}</TableCell>
-            <TableCell className="text-right"><Button variant="text"><IoEllipsisVertical /></Button></TableCell>
-          </TableRow>
-        )))}
-      </TableBody>
-      <TableFooter>
-        <TableRow>
-          <TableCell colSpan={3}>Comisiones</TableCell>
-          <TableCell className="text-right">$0.00 MXN</TableCell>
-        </TableRow>
-      </TableFooter>
-    </Table>
-
-  );
+     <Card className="h-full w-full rounded-sm xs:overflow-scroll">
+        <table className="w-full min-w-max table-auto text-left">
+        <thead>
+          <tr>
+            {columns.map((head) => (
+              <th key={head} className="border-b border-gray-100 bg-gray-100 p-3">
+                <Typography variant="small" color="black" className="font-normal leading-none opacity-70" >
+                  {head}
+                </Typography>
+              </th>
+            ))}
+          </tr>
+        </thead>
+        <tbody>
+            {APIData.map((data) => {
+              return (
+                <tr key={data.Id} className="even:bg-gray-50/50">
+                  <td className="p-3">
+                    <Typography variant="small" color="blue-gray" className="font-normal">
+                      {data.Fecha}
+                    </Typography>
+                  </td>
+                  <td className="p-3">
+                    <Typography variant="small" color="blue-gray" className="font-normal">
+                      {data.Modelo}
+                    </Typography>
+                  </td>
+                  <td className="p-3">
+                    <Typography variant="small" color="blue-gray" className="font-normal">
+                      {data.Precio}
+                    </Typography>
+                  </td>
+                  <td className="p-3">
+                    <Typography as="a" href="#" variant="small" color="gray" className="font-medium text-right">
+                      <IoCreateOutline />
+                    </Typography>
+                  </td>
+                </tr>
+              )
+            })}
+        </tbody>
+        <tfoot>
+          <tr>
+            <td className="border-t border-gray-100 bg-gray-100 text-right p-3" colSpan="2">
+              <Typography variant="small" color="blue-gray" className="font-normal">
+                Comisiones:
+              </Typography>
+            </td>
+            <td className="border-t border-gray-100 bg-gray-100 p-3" colSpan="2">
+              <Typography variant="small" color="blue-gray" className="font-normal">
+                $0,00 MXN
+              </Typography>
+            </td>
+          </tr>
+        </tfoot>
+      </table>
+    </Card>
+  )
 }

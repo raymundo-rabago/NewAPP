@@ -1,6 +1,6 @@
 import React from 'react';
-import { auth, logout } from "../firebase";
-import { Navbar, Typography, Button } from "@material-tailwind/react";
+import { logout } from "../firebase";
+import { Navbar, Button } from "@material-tailwind/react";
 import { IoPower } from 'react-icons/io5';
 
 export const Header = () => {

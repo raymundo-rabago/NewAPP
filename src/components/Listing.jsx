@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from 'react';
-import { Drawer, Button, Typography, IconButton } from "@material-tailwind/react";
+import React from 'react';
+import { Button, Typography } from "@material-tailwind/react";
 import { IoAddCircle } from 'react-icons/io5';
 
 import { VentasTabla } from './VentasTabla';
