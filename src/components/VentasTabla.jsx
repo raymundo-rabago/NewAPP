@@ -1,104 +1,66 @@
 
 // https://dev.to/debosthefirst/firebase-functions-to-build-a-serverless-crud-app-34kl
 import React, { useState, useEffect } from 'react';
-import { Card, Typography } from "@material-tailwind/react";
-import { collection, getDocs } from "firebase/firestore";
-
-import { app, db } from "../firebase";
+import { Button } from "@material-tailwind/react";
+import { IoEllipsisVertical } from 'react-icons/io5';
+import { Table, TableBody, TableCaption, TableCell, TableHead, TableHeader, TableFooter, TableRow } from "@/components/ui/table";
+import { collection, doc, getDoc, getDocs } from "firebase/firestore";
+import { db } from "../firebase";
 
 export const VentasTabla = () => {
 
+  const collectionName = "Ventas";
+  const getVentas = () => getDocs(collection(db, collectionName));
+  const getVenta = (id) => getDoc(doc(db, collectionName, id));
+
   const [ventas, setVentas] = useState([]);
 
+  const getLista = async () => {
+    const querySnapshot = await getVentas();
+    // onGetLinks((querySnapshot) => {
+    const docs = [];
+    querySnapshot.forEach((doc) => {
+      docs.push({ ...doc.data(), id: doc.id });
+    });
+    setVentas(docs);
+    // });
+  };
+
   useEffect(() => {
-    const fetchVentas = async () => {
-      try {
-        if (!app) return;
-
-        const ref = db.collection("Ventas");
-
-        const docs = await ref.get();
-
-        let allVentas = [];
-        docs.forEach((doc) => {
-          const data = doc.data();
-          allVentas.push(data.venta);
-        });
-        setVentas(allVentas);
-      } catch (error) {
-        console.log("error", error);
-      }
-    };
-
-    fetchVentas();
-  });
-
-
-  const TABLE_HEAD = ["Fecha", "Modelo", "Precio", "Cliente", "Folio", "Estado", "Nota", " " ];
+    getLista();
+  }, []);
 
   return (
 
-    <Card className="h-full w-full overflow-scroll">
-      <table className="w-full min-w-max table-auto text-left">
-        <thead>
-          <tr>
-            {TABLE_HEAD.map((head) => (
-              <th key={head} className="border-b border-blue-gray-100 bg-blue-gray-50 p-4">
-                <Typography variant="small" color="blue-gray" className="font-normal leading-none opacity-70" >
-                  {head}
-                </Typography>
-              </th>
-            ))}
-          </tr>
-        </thead>
-        <tbody>
-          {ventas.map(({ id, Fecha, Modelo, Precio }, index) => (
-            <tr key={id} className="even:bg-blue-gray-50/50">
-              <td className="p-4">
-                <Typography variant="small" color="blue-gray" className="font-normal">
-                  {Fecha}
-                </Typography>
-              </td>
-              <td className="p-4">
-                <Typography variant="small" color="blue-gray" className="font-normal">
-                  {Modelo}
-                </Typography>
-              </td>
-              <td className="p-4">
-                <Typography variant="small" color="blue-gray" className="font-normal">
-                  {Precio}
-                </Typography>
-              </td>
-              <td className="p-4">
-                <Typography variant="small" color="blue-gray" className="font-normal">
-                  {Cliente}
-                </Typography>
-              </td>
-              <td className="p-4">
-                <Typography variant="small" color="blue-gray" className="font-normal">
-                  {Folio}
-                </Typography>
-              </td>
-              <td className="p-4">
-                <Typography variant="small" color="blue-gray" className="font-normal">
-                  {Estado}
-                </Typography>
-              </td>
-              <td className="p-4">
-                <Typography variant="small" color="blue-gray" className="font-normal">
-                  {Nota}
-                </Typography>
-              </td>
-              <td className="p-4">
-                <Typography as="a" href="#" variant="small" color="blue-gray" className="font-medium">
-                  Editar
-                </Typography>
-              </td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
-    </Card>
+    <Table>
+      <TableCaption>No hay datos disponibles en este momento</TableCaption>
+      <TableHeader>
+        <TableRow>
+          <TableHead className="w-[100px]">Fecha</TableHead>
+          <TableHead>Modelo</TableHead>
+          <TableHead>Precio</TableHead>
+          <TableHead>Cliente</TableHead>
+          <TableHead className="text-right">Edit</TableHead>
+        </TableRow>
+      </TableHeader>
+      <TableBody>
+        {ventas.map((id => (
+          <TableRow key={id}>
+            <TableCell className="font-medium">{ventas.Fecha}</TableCell>
+            <TableCell>{ventas.Modelo}</TableCell>
+            <TableCell>{ventas.Precio}</TableCell>
+            <TableCell>{ventas.Cliente}</TableCell>
+            <TableCell className="text-right"><Button variant="text"><IoEllipsisVertical /></Button></TableCell>
+          </TableRow>
+        )))}
+      </TableBody>
+      <TableFooter>
+        <TableRow>
+          <TableCell colSpan={3}>Comisiones</TableCell>
+          <TableCell className="text-right">$0.00 MXN</TableCell>
+        </TableRow>
+      </TableFooter>
+    </Table>
 
   );
 }

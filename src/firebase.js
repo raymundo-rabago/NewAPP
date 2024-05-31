@@ -37,13 +37,3 @@ export const logInWithEmailAndPassword = async (email, password) => {
 export const logout = async () => {
   await signOut(auth);
 };
-
-
-export const getFirebase = () => {
-  if (typeof window !== "undefined") {
-    if (instance) return instance;
-    instance = initializeApp(firebaseConfig);
-    return instance;
-  }
-  return null;
-}
