@@ -1,66 +1,95 @@
 
 // https://github.com/vensi9/crud-operation-with-react.js-axios/blob/main/src/components/Read.js#L4
-import React, { useState, useEffect } from 'react';
-import { Card, Button, Typography } from "@material-tailwind/react";
-import { IoEllipsisVertical } from 'react-icons/io5';
+import React, { useState } from 'react';
+import { Card, Button, Typography, Input, ButtonGroup } from "@material-tailwind/react";
+import {
+  useReactTable,
+  getCoreRowModel,
+  flexRender,
+  getPaginationRowModel,
+  getSortedRowModel,
+  getFilteredRowModel,
+} from "@tanstack/react-table";
 
-import axios from 'axios';
+import { IoCaretUp, IoCaretDown } from 'react-icons/io5';
 
-import "gridjs/dist/theme/mermaid.css";
+export const VentasTabla = ({ data, columns } ) => {
 
-export const VentasTabla = () => {
+  const [sorting, setSorting] = useState([]);
+  const [filtering, setFiltering] = useState("");
 
-  const api_url = 'https://api.sheetapi.rest/api/v1/sheet/gsgBKGkQLZhF6NzKDxc4Y';
-  const columns = ["Fecha", "Modelo", "Precio", ""];
-
-  const [APIData, setAPIData] = useState([]);
-
-
-  useEffect(() => {
-    axios.get(api_url).then((response) => {
-      setAPIData(response.data);
-    });
-  }, []);
-
+  const table = useReactTable({
+    columns,
+    data,
+    getCoreRowModel: getCoreRowModel(),
+    getPaginationRowModel: getPaginationRowModel(),
+    getSortedRowModel: getSortedRowModel(),
+    getFilteredRowModel: getFilteredRowModel(),
+    state: {
+      sorting,
+      globalFilter: filtering,
+    },
+    onSortingChange: setSorting,
+    onGlobalFilterChange: setFiltering,
+    initialState: {
+      sortBy: [
+        {
+            id: 'Fecha',
+            desc: false
+        }
+      ]
+    }
+  });
+  
   return (
-
-    <Card className="h-full w-full overflow-scroll">
-      <table className="w-full min-w-max table-auto text-left">
-        <thead>
-          <tr>
-            {columns.map((index) => (
-              <th key={index} className="border-b border-blue-gray-100 bg-blue-gray-50 p-4">
-                <Typography variant="small" color="blue-gray" className="font-normal leading-none opacity-70" >
-                  {index}
-                </Typography>
-              </th>
+    <div className='m-auto sm:container'>
+      <div className='d-block mb-5'>
+        <Input type="text" variant="outlined" label="Busqueda" size="md" color="gray" className='md:max-w-sm' value={filtering} onChange={(e) => setFiltering(e.target.value)} />
+      </div>
+      <Card className="h-full w-full rounded mb-5">        
+        <table className="w-full min-w-max text-left border-collapse table-fixed">
+          <thead>
+            {table.getHeaderGroups().map((headerGroup) => (
+              <tr key={headerGroup.id}>
+                {headerGroup.headers.map((header) => (
+                  <th key={header.id} onClick={header.column.getToggleSortingHandler()} className="border-b border-blue-gray-100 bg-blue-gray-50 p-3">
+                    {header.isPlaceholder ? null : (
+                      <Typography variant="small" color="black" className="font-normal leading-none text-xs opacity-70 flex-auto">
+                        {flexRender(
+                          header.column.columnDef.header,
+                          header.getContext()
+                        )}
+                        {
+                          { asc: <IoCaretUp />, desc: <IoCaretDown /> }[
+                            header.column.getIsSorted() ?? null
+                          ]
+                        }
+                      </Typography>
+                    )}
+                  </th>
+                ))}
+              </tr>
             ))}
-          </tr>
-        </thead>
-        <tbody>
-          {APIData.map(({ Fecha, Modelo, Cliente, Precio }, id) => (
-            <tr key={id} className="even:bg-blue-gray-50/50">
-              <td className="p-4">
-                <Typography variant="small" color="blue-gray" className="font-normal">
-                  {Fecha}
-                </Typography>
-              </td>
-              <td className="p-4">
-                <Typography variant="small" color="black" className="font-normal">{Modelo}</Typography>
-                <Typography variant="small">Vendido a: <strong>{Cliente}</strong></Typography>
-              </td>
-              <td className="p-4">
-                <Typography variant="small" color="blue-gray" className="font-normal">
-                  {Precio}
-                </Typography>
-              </td>
-              <td className="p-4" width="6%">
-                <Button variant="text"><IoEllipsisVertical /></Button>
-              </td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
-    </Card>
+          </thead>
+          <tbody>
+            {table.getRowModel().rows.map((row) => (
+              <tr key={row.id} className="even:bg-blue-gray-50/50">
+                {row.getVisibleCells().map((cell) => (
+                  <td className="p-3"><Typography variant="small" color="gray" className="font-normal text-xs">{flexRender(cell.column.columnDef.cell, cell.getContext())}</Typography></td>
+                ))}
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </Card>
+      <div className="flex w-max flex-col gap-4">
+        <ButtonGroup variant="outlined" size="sm">
+          <Button onClick={() => table.setPageIndex(0)}>Primer Pagina</Button>
+          <Button onClick={() => table.previousPage()}>Anterior</Button>
+          <Button onClick={() => table.nextPage()}>Siguiente</Button>
+          <Button onClick={() => table.setPageIndex(table.getPageCount() - 1)}>Ultima Pagina</Button>
+        </ButtonGroup>
+      </div>
+    </div>
   )
 }
