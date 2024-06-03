@@ -1,96 +1,65 @@
 
 // https://github.com/vensi9/crud-operation-with-react.js-axios/blob/main/src/components/Read.js#L4
-import React, {useState, useEffect}from 'react';
-import { Card, Typography } from "@material-tailwind/react";
-import { IoCreateOutline } from 'react-icons/io5';
+import React, { useState, useEffect } from 'react';
+import { Card, Button, Typography } from "@material-tailwind/react";
+import { IoEllipsisVertical } from 'react-icons/io5';
 
 import axios from 'axios';
+
+import "gridjs/dist/theme/mermaid.css";
 
 export const VentasTabla = () => {
 
   const api_url = 'https://api.sheetapi.rest/api/v1/sheet/gsgBKGkQLZhF6NzKDxc4Y';
-  const columns = ['Fecha','Modelo','Precio',''];
+  const columns = ["Fecha", "Modelo", "Precio", ""];
 
   const [APIData, setAPIData] = useState([]);
 
+
   useEffect(() => {
-    axios.get(api_url)
-      .then((response) => {
-        setAPIData(response.data);
-      })
+    axios.get(api_url).then((response) => {
+      setAPIData(response.data);
+    });
   }, []);
 
-  const setData = (data) => {
-    let { id, firstName, lastName, checkbox } = data;
-    localStorage.setItem('ID', id);
-    localStorage.setItem('First Name', firstName);
-    localStorage.setItem('Last Name', lastName);
-    localStorage.setItem('Checkbox Value', checkbox)
-  }
-
-  const getData = () => {
-    axios.get(api_url)
-      .then((getData) => {
-        setAPIData(getData.data);
-      })
-  }
-
   return (
-     <Card className="h-full w-full rounded-sm xs:overflow-scroll">
-        <table className="w-full min-w-max table-auto text-left">
+
+    <Card className="h-full w-full overflow-scroll">
+      <table className="w-full min-w-max table-auto text-left">
         <thead>
           <tr>
-            {columns.map((head) => (
-              <th key={head} className="border-b border-gray-100 bg-gray-100 p-3">
-                <Typography variant="small" color="black" className="font-normal leading-none opacity-70" >
-                  {head}
+            {columns.map((index) => (
+              <th key={index} className="border-b border-blue-gray-100 bg-blue-gray-50 p-4">
+                <Typography variant="small" color="blue-gray" className="font-normal leading-none opacity-70" >
+                  {index}
                 </Typography>
               </th>
             ))}
           </tr>
         </thead>
         <tbody>
-            {APIData.map((data) => {
-              return (
-                <tr key={data.Id} className="even:bg-gray-50/50">
-                  <td className="p-3">
-                    <Typography variant="small" color="blue-gray" className="font-normal">
-                      {data.Fecha}
-                    </Typography>
-                  </td>
-                  <td className="p-3">
-                    <Typography variant="small" color="blue-gray" className="font-normal">
-                      {data.Modelo}
-                    </Typography>
-                  </td>
-                  <td className="p-3">
-                    <Typography variant="small" color="blue-gray" className="font-normal">
-                      {data.Precio}
-                    </Typography>
-                  </td>
-                  <td className="p-3">
-                    <Typography as="a" href="#" variant="small" color="gray" className="font-medium text-right">
-                      <IoCreateOutline />
-                    </Typography>
-                  </td>
-                </tr>
-              )
-            })}
+          {APIData.map(({ Fecha, Modelo, Cliente, Precio }, id) => (
+            <tr key={id} className="even:bg-blue-gray-50/50">
+              <td className="p-4">
+                <Typography variant="small" color="blue-gray" className="font-normal">
+                  {Fecha}
+                </Typography>
+              </td>
+              <td className="p-4">
+                <Typography variant="small" color="black" className="font-normal">{Modelo}</Typography>
+                <Typography variant="small">Vendido a: <strong>{Cliente}</strong></Typography>
+              </td>
+              <td className="p-4">
+                <Typography variant="small" color="blue-gray" className="font-normal">
+                  {Precio}
+                </Typography>
+              </td>
+              <td className="p-4" width="6%">
+                <Button variant="text"><IoEllipsisVertical /></Button>
+              </td>
+            </tr>
+          ))}
         </tbody>
-        <tfoot>
-          <tr>
-            <td className="border-t border-gray-100 bg-gray-100 text-right p-3" colSpan="2">
-              <Typography variant="small" color="blue-gray" className="font-normal">
-                Comisiones:
-              </Typography>
-            </td>
-            <td className="border-t border-gray-100 bg-gray-100 p-3" colSpan="2">
-              <Typography variant="small" color="blue-gray" className="font-normal">
-                $0,00 MXN
-              </Typography>
-            </td>
-          </tr>
-        </tfoot>
       </table>
     </Card>
   )
