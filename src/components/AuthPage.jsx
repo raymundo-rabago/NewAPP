@@ -27,7 +27,7 @@ export default function AuthPage() {
             <Card className="mt-6 w-100" color="white" shadow={true}>
                 <CardBody>
                     <figure className="flex justify-center my-4">
-                        <img src="/soluxe-logo.svg" className="h-20 object-contain object-center mb-3" />
+                        <img src="/soluxe-logo.svg" className="h-20 object-contain object-center mb-3" width="110px" height="110px" />
                     </figure>
                     <form className="mt-4 mb-2 w-80 max-w-screen-lg sm:w-96">
                         <div className="flex flex-col gap-6 h-auto">

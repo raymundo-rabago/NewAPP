@@ -49,7 +49,7 @@ export const VentasTabla = ({ data, columns }) => {
 
   return (
     <div className='m-auto sm:container'>
-      <div className='d-block mb-5'>
+      <div className='w-full sm:w-72 mb-5'>
         <Input type="text" variant="outlined" label="Busqueda" size="md" color="gray" className='md:max-w-sm' value={filtering} onChange={(e) => setFiltering(e.target.value)} />
       </div>
       <Card className="h-full w-full rounded mb-5">
@@ -60,13 +60,13 @@ export const VentasTabla = ({ data, columns }) => {
                 {headerGroup.headers.map((header) => (
                   <th key={header.id} onClick={header.column.getToggleSortingHandler()} className="border-b border-blue-gray-100 bg-blue-gray-50 p-3">
                     {header.isPlaceholder ? null : (
-                      <Typography variant="small" color="black" className="font-normal leading-none text-xs opacity-70 flex-auto">
+                      <Typography variant="small" color="black" className="font-normal leading-none text-xs flex justify-between align-middle">
                         {flexRender(
                           header.column.columnDef.header,
                           header.getContext()
                         )}
                         {
-                          { asc: <IoCaretUp />, desc: <IoCaretDown /> }[
+                          { asc: <IoCaretUp className='opacity-70' />, desc: <IoCaretDown className='opacity-70' /> }[
                           header.column.getIsSorted() ?? null
                           ]
                         }
