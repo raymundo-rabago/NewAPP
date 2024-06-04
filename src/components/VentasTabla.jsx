@@ -13,20 +13,26 @@ import {
 
 import { IoCaretUp, IoCaretDown } from 'react-icons/io5';
 
-export const VentasTabla = ({ data, columns } ) => {
+export const VentasTabla = ({ data, columns }) => {
 
   const [sorting, setSorting] = useState([]);
   const [filtering, setFiltering] = useState("");
+  const [pagination, setPagination] = useState({
+    pageIndex: 0,
+    pageSize: 12,
+  });
 
   const table = useReactTable({
     columns,
     data,
     getCoreRowModel: getCoreRowModel(),
-    getPaginationRowModel: getPaginationRowModel(),
     getSortedRowModel: getSortedRowModel(),
     getFilteredRowModel: getFilteredRowModel(),
+    getPaginationRowModel: getPaginationRowModel(),
+    onPaginationChange: setPagination,
     state: {
       sorting,
+      pagination,
       globalFilter: filtering,
     },
     onSortingChange: setSorting,
@@ -34,19 +40,19 @@ export const VentasTabla = ({ data, columns } ) => {
     initialState: {
       sortBy: [
         {
-            id: 'Fecha',
-            desc: false
+          id: 'Fecha',
+          desc: false
         }
       ]
     }
   });
-  
+
   return (
     <div className='m-auto sm:container'>
       <div className='d-block mb-5'>
         <Input type="text" variant="outlined" label="Busqueda" size="md" color="gray" className='md:max-w-sm' value={filtering} onChange={(e) => setFiltering(e.target.value)} />
       </div>
-      <Card className="h-full w-full rounded mb-5">        
+      <Card className="h-full w-full rounded mb-5">
         <table className="w-full min-w-max text-left border-collapse table-fixed">
           <thead>
             {table.getHeaderGroups().map((headerGroup) => (
@@ -61,7 +67,7 @@ export const VentasTabla = ({ data, columns } ) => {
                         )}
                         {
                           { asc: <IoCaretUp />, desc: <IoCaretDown /> }[
-                            header.column.getIsSorted() ?? null
+                          header.column.getIsSorted() ?? null
                           ]
                         }
                       </Typography>

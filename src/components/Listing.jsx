@@ -4,6 +4,7 @@ import { Button, IconButton, Typography, Drawer } from "@material-tailwind/react
 import { IoAddCircle, IoClose, IoTodayOutline } from 'react-icons/io5';
 
 import { VentasTabla } from './VentasTabla';
+import CreateForm from './CreateForm';
 
 export const Listing = () => {
 
@@ -13,7 +14,7 @@ export const Listing = () => {
   const [openRight, setOpenRight] = useState(false);
   const openDrawerRight = () => setOpenRight(true);
   const closeDrawerRight = () => setOpenRight(false);
-  
+
   useEffect(() => {
     axios.get(api_url).then((response) => {
       setAPIData(response.data);
@@ -36,6 +37,7 @@ export const Listing = () => {
     {
       header: "Precio",
       accessorKey: "Precio",
+      accessorFn: row => `$ ${row.Precio}`,
     },
     /* {
       header: "Editar",
@@ -48,29 +50,26 @@ export const Listing = () => {
 
   return (
     <>
-    <main id="Ventas" className='p-4 flex-col h-full'>
-      <div className='container-lg'>
-        <div className='flex justify-between align-middle py-2 mb-4'>
-          <Typography variant="h5" className="uppercase leading-4"><small>Listado de</small><br />Ventas</Typography>
-          <div className='flex flex-col justify-center'>
-            <Button variant="gradient" size="sm" className="flex items-center gap-3" onClick={openDrawerRight}>Añadir <IoAddCircle /></Button>
+      <main id="Ventas" className='p-4 flex-col h-full'>
+        <div className='m-auto sm:container'>
+          <div className='flex justify-between align-middle py-2 mb-4'>
+            <Typography variant="h5" className="uppercase leading-4"><small>Listado de</small><br />Ventas</Typography>
+            <div className='flex flex-col justify-center'>
+              <Button variant="gradient" size="sm" className="flex items-center gap-3" onClick={openDrawerRight}>Añadir <IoAddCircle /></Button>
+            </div>
+          </div>
+          <div className='py-4'>
+            <VentasTabla data={APIData} columns={columns} />
           </div>
         </div>
-        <div className='py-4'>
-            <VentasTabla data={APIData} columns={columns} />
+      </main>
+      <Drawer placement="right" open={openRight} onClose={closeDrawerRight} className="p-4" >
+        <div className="mb-6 flex items-center justify-between">
+          <Typography variant="h5" color="blue-gray" className='flex items-center'><IoTodayOutline /> <span className='ml-2'>Venta</span></Typography>
+          <IconButton variant="text" color="blue-gray" onClick={closeDrawerRight}><IoClose /></IconButton>
         </div>
-      </div>
-    </main>
-    <Drawer placement="right" open={openRight} onClose={closeDrawerRight} className="p-4" >
-      <div className="mb-6 flex items-center justify-between">
-        <Typography variant="h5" color="blue-gray" className='flex items-center'><IoTodayOutline /> <span className='ml-2'>Venta</span></Typography>
-        <IconButton variant="text" color="blue-gray" onClick={closeDrawerRight}><IoClose /></IconButton>
-      </div>
-      <Typography color="gray" className="mb-8 pr-4 font-normal">
-        Material Tailwind features multiple React and HTML components, all
-        written with Tailwind CSS classes and Material Design guidelines.
-      </Typography>
-    </Drawer>
+        <CreateForm />
+      </Drawer>
     </>
   );
 
