@@ -89,7 +89,7 @@ export const VentasTabla = ({ data, columns }) => {
         </table>
       </Card>
       <div className="flex w-max flex-col gap-4">
-        <ButtonGroup variant="outlined" size="sm">
+        <ButtonGroup size="sm">
           <Button onClick={() => table.setPageIndex(0)}>Primer Pagina</Button>
           <Button onClick={() => table.previousPage()}>Anterior</Button>
           <Button onClick={() => table.nextPage()}>Siguiente</Button>
