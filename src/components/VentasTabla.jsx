@@ -81,7 +81,7 @@ export const VentasTabla = ({ data, columns }) => {
             {table.getRowModel().rows.map((row) => (
               <tr key={row.id} className="even:bg-blue-gray-50/50">
                 {row.getVisibleCells().map((cell) => (
-                  <td className="p-3"><Typography variant="small" color="gray" className="font-normal text-xs">{flexRender(cell.column.columnDef.cell, cell.getContext())}</Typography></td>
+                  <td key={cell.id} className="p-3"><Typography variant="small" color="gray" className="font-normal text-xs">{flexRender(cell.column.columnDef.cell, cell.getContext())}</Typography></td>
                 ))}
               </tr>
             ))}

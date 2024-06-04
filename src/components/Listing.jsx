@@ -18,7 +18,7 @@ export const Listing = () => {
   useEffect(() => {
     axios.get(api_url).then((response) => {
       setAPIData(response.data);
-    });
+    }).catch( (err)=>{console.log(err)});
   }, []);
 
   const columns = [

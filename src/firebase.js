@@ -25,7 +25,6 @@ export const logInWithEmailAndPassword = async (email, password) => {
   } catch (err) {
     console.error(err);
     toast.error('Error de Autenticación... intentalo de nuevo');
-    //alert(err.message);
   }
 };
 

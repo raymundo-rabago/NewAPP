@@ -1,6 +1,6 @@
 import react from "@vitejs/plugin-react";
 import { defineConfig } from "vite";
-import { VitePWA } from 'vite-plugin-pwa'
+import { VitePWA } from 'vite-plugin-pwa';
  
 export default defineConfig({
   plugins: [
@@ -14,6 +14,11 @@ export default defineConfig({
         short_name: 'Soluxe',
         description: 'Soluxe Sunglasses Boutique, panel de administración de ventas',
         theme_color: '#ffffff',
+        background_color:'#333',
+        display:"standalone",
+        scope:'/',
+        start_url:"/",
+        orientation:'portrait',
         icons: [
           {
             src: "favicon.ico",
