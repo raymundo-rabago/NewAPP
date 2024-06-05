@@ -64,7 +64,7 @@ export const CreateForm = () => {
                     </div>
                 </div>
                 <div className='py-4'>
-                    <form className="mt-4 mb-2 w-full">
+                    <form className="mt-4 mb-2 w-full" onSubmit={handleSubmit}>
                         <fieldset className="flex flex-col gap-4 h-auto">
                             <Input type="date" variant="outlined" size="md" label="Fecha" placeholder="Dia/Mes/Año" color="gray" onChange={(e) => setFecha(e.target.value)} />
                             <Input type="text" variant="outlined" size="md" label="Modelo" color="gray" onChange={(e) => setModelo(e.target.value)} />
@@ -84,7 +84,7 @@ export const CreateForm = () => {
                                     Cancelar
                                 </Button>
                             </Link>
-                            <Button ripple={true} variant="gradient" size="sm" className="mt-8 w-1/2 flex items-center text-center justify-center gap-2" onClick={handleSubmit}>
+                            <Button type="submit" ripple={true} variant="gradient" size="sm" className="mt-8 w-1/2 flex items-center text-center justify-center gap-2">
                                 Registrar
                             </Button>
                         </fieldset>
