@@ -11,7 +11,7 @@ import {
   getFilteredRowModel,
 } from "@tanstack/react-table";
 
-import { IoIosArrowUp, IoIosArrowDown } from 'react-icons/io';
+import { IoIosArrowUp, IoIosArrowDown, IoIosArrowBack, IoIosArrowForward } from 'react-icons/io';
 
 export const VentasTabla = ({ data, columns }) => {
 
@@ -53,7 +53,7 @@ export const VentasTabla = ({ data, columns }) => {
         <Input type="text" variant="outlined" label="Busqueda" size="md" color="gray" className='md:max-w-sm' value={filtering} onChange={(e) => setFiltering(e.target.value)} />
       </div>
       <Card className="h-full w-full rounded mb-5">
-        <table className="w-full min-w-max text-left border-collapse table-fixed">
+        <table className="table-auto text-left border-collapse">
           <thead>
             {table.getHeaderGroups().map((headerGroup) => (
               <tr key={headerGroup.id}>
@@ -66,9 +66,7 @@ export const VentasTabla = ({ data, columns }) => {
                           header.getContext()
                         )}
                         {
-                          { asc: <IoIosArrowUp className='opacity-40' />, desc: <IoIosArrowDown className='opacity-40' /> }[
-                          header.column.getIsSorted() ?? null
-                          ]
+                          { asc: <IoIosArrowUp className='opacity-40' />, desc: <IoIosArrowDown className='opacity-40' /> }[ header.column.getIsSorted() ?? null ]
                         }
                       </Typography>
                     )}
@@ -81,19 +79,21 @@ export const VentasTabla = ({ data, columns }) => {
             {table.getRowModel().rows.map((row) => (
               <tr key={row.id} className="even:bg-blue-gray-50/50">
                 {row.getVisibleCells().map((cell) => (
-                  <td key={cell.id} className="p-3"><Typography variant="small" color="gray" className="font-normal text-xs">{flexRender(cell.column.columnDef.cell, cell.getContext())}</Typography></td>
+                  <td key={cell.id} className="p-3">
+                    <Typography variant="small" color="gray" className="font-normal text-xs">
+                      {flexRender(cell.column.columnDef.cell, cell.getContext())}
+                    </Typography>
+                  </td>
                 ))}
               </tr>
             ))}
           </tbody>
         </table>
       </Card>
-      <div className="flex w-max flex-col gap-4">
-        <ButtonGroup size="sm">
-          <Button onClick={() => table.setPageIndex(0)}>Primer Pagina</Button>
-          <Button onClick={() => table.previousPage()}>Anterior</Button>
-          <Button onClick={() => table.nextPage()}>Siguiente</Button>
-          <Button onClick={() => table.setPageIndex(table.getPageCount() - 1)}>Ultima Pagina</Button>
+      <div className="flex w-full gap-4 justify-end">
+        <ButtonGroup variant="outlined" size="sm" color="gray" className="opacity-75">
+          <Button className="flex items-center gap-3" onClick={() => table.previousPage()}><IoIosArrowBack /> Anterior</Button>
+          <Button className="flex items-center gap-3" onClick={() => table.nextPage()}>Siguiente <IoIosArrowForward /></Button>
         </ButtonGroup>
       </div>
     </div>

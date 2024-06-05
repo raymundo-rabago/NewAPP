@@ -21,6 +21,7 @@ export const Listing = () => {
     {
       header: "Fecha",
       accessorKey: "Fecha",
+      enableSorting: true,
     },
     {
       header: "Modelo",
@@ -35,13 +36,11 @@ export const Listing = () => {
       accessorKey: "Precio",
       accessorFn: row => `$ ${row.Precio}`,
     },
-    /* {
+    {
       header: "Editar",
-      accessorKey: "Id",
-      cell: () => {
-        return <Button variant="text" size='sm' onClick={openDrawerRight}>Editar</Button>
-      }
-    } */
+      accessorKey: "Editar",
+      // cell: () => <Button variant="text" size='sm' onClick={openDrawerRight()}>Editar</Button>
+    }
   ];
 
   return (
