@@ -11,7 +11,7 @@ import {
   getFilteredRowModel,
 } from "@tanstack/react-table";
 
-import { IoCaretUp, IoCaretDown } from 'react-icons/io5';
+import { LuArrowDownUp } from "react-icons/lu";
 
 export const VentasTabla = ({ data, columns }) => {
 
@@ -66,7 +66,7 @@ export const VentasTabla = ({ data, columns }) => {
                           header.getContext()
                         )}
                         {
-                          { asc: <IoCaretUp className='opacity-70' />, desc: <IoCaretDown className='opacity-70' /> }[
+                          { asc: <LuArrowDownUp className='opacity-40' />, desc: <LuArrowDownUp className='opacity-40' /> }[
                           header.column.getIsSorted() ?? null
                           ]
                         }

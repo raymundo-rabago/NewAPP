@@ -7,7 +7,7 @@ export const Header = () => {
 
   return (
     <Navbar className="mx-auto max-w-full px-4 py-2 rounded-none">
-      <div className='m-auto sm:container'>
+      <div className='container mx-auto'>
         <div className="flex items-center justify-between text-gray-900">
           <img src="./soluxe.svg" className='w-28' />
           <div className="py-1.5">

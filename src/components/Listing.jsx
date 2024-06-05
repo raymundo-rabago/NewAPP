@@ -18,7 +18,7 @@ export const Listing = () => {
   useEffect(() => {
     axios.get(api_url).then((response) => {
       setAPIData(response.data);
-    }).catch( (err)=>{console.log(err)});
+    }).catch((err) => { console.log(err) });
   }, []);
 
   const columns = [
@@ -51,7 +51,7 @@ export const Listing = () => {
   return (
     <>
       <main id="Ventas" className='p-4 flex-col h-full'>
-        <div className='m-auto sm:container'>
+        <div className='container mx-auto'>
           <div className='flex justify-between align-middle py-2 mb-4'>
             <Typography variant="h5" className="uppercase leading-4"><small>Listado de</small><br />Ventas</Typography>
             <div className='flex flex-col justify-center'>
