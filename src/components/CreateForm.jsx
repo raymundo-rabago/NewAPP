@@ -1,6 +1,11 @@
 // https://github.com/vensi9/crud-operation-with-react.js-axios/tree/main;
 import React, { useState } from 'react';
-import { Input, Button, Checkbox } from "@material-tailwind/react";
+import { Link } from "react-router-dom";
+import { Input, Button, Checkbox, Typography } from "@material-tailwind/react";
+
+import { IoTodayOutline } from 'react-icons/io5';
+import { IoMdArrowBack } from "react-icons/io";
+
 import { Toaster } from 'sonner';
 
 import axios from 'axios';
@@ -8,10 +13,10 @@ import { nanoid } from 'nanoid';
 import { toast } from 'sonner';
 
 
-const CreateForm = () => {
+export const CreateForm = () => {
 
     const api_url = 'https://api.sheetapi.rest/api/v1/sheet/gsgBKGkQLZhF6NzKDxc4Y';
-    // const [APIData, setAPIData] = useState([]);
+
     const [Id, setId] = useState('');
     const [Fecha, setFecha] = useState('');
     const [Modelo, setModelo] = useState('');
@@ -22,18 +27,6 @@ const CreateForm = () => {
     const [Soluxe, setSoluxe] = useState(false);
     const [Soluxeda, setSoluxeda] = useState(false);
     const [Optica, setOptica] = useState(false);
-
-    const resetValues = () => {
-        setId(null);
-        setFecha('');
-        setModelo('');
-        setCliente('');
-        setPrecio('');
-        setFolio('');
-        setSoluxe(false);
-        setSoluxeda(false);
-        setOptica(false);
-    };
 
     const postData = async () => {
         const Id = nanoid(8);
@@ -59,39 +52,47 @@ const CreateForm = () => {
     const handleSubmit = (e) => {
         e.preventDefault();
         postData();
-        resetValues();
     }
 
     return (
-        <>
-            <form className="mt-4 mb-2 w-full">
-                <fieldset className="flex flex-col gap-4 h-auto">
-                    <Input type="date" variant="outlined" size="md" label="Fecha" placeholder="Dia/Mes/Año" color="gray" onChange={(e) => setFecha(e.target.value)} />
-                    <Input type="text" variant="outlined" size="md" label="Modelo" color="gray" onChange={(e) => setModelo(e.target.value)} />
-                    <Input type="text" variant="outlined" size="md" label="Cliente" color="gray" onChange={(e) => setCliente(e.target.value)} />
-                    <Input type="number" variant="outlined" size="md" label="Precio" color="gray" onChange={(e) => setPrecio(e.target.value)} />
-                    <Input type="text" variant="outlined" size="md" label="Folio" color="gray" onChange={(e) => setFolio(e.target.value)} />
-                    <div className='flex justify-start mb-0 gap-2'>
-                        <Checkbox label="Soluxe" onChange={(e) => setSoluxe(!Soluxe)} />
-                        <Checkbox label="Soluxeda" onChange={(e) => setSoluxeda(!Soluxeda)} />
+        <main id="Ventas" className='p-4 flex-col h-full'>
+            <div className='container mx-auto'>
+                <div className='flex justify-between align-middle py-2 mb-4'>
+                    <Typography variant="h5" className="leading-4 flex items-center gap-2"><IoTodayOutline /> Registro de Venta</Typography>
+                    <div className='flex flex-col justify-center'>
+                        <Link to="/admin"><Button variant="text" size="sm" className="flex items-center gap-2"><IoMdArrowBack /> Regresar</Button></Link>
                     </div>
-                    <div className='flex justify-start'>
-                        <Checkbox label="Facturado en Optica" onChange={(e) => setOptica(!Optica)} />
-                    </div>
-                </fieldset>
-                <fieldset className="flex flex-row gap-6 h-auto">
-                    <Button ripple={true} variant="text" size="sm" className="mt-8 w-1/2 flex items-center text-center justify-center gap-2" >
-                        Cancelar
-                    </Button>
-                    <Button ripple={true} variant="gradient" size="sm" className="mt-8 w-1/2 flex items-center text-center justify-center gap-2" onClick={handleSubmit}>
-                        Registrar
-                    </Button>
-                </fieldset>
-            </form>
+                </div>
+                <div className='py-4'>
+                    <form className="mt-4 mb-2 w-full">
+                        <fieldset className="flex flex-col gap-4 h-auto">
+                            <Input type="date" variant="outlined" size="md" label="Fecha" placeholder="Dia/Mes/Año" color="gray" onChange={(e) => setFecha(e.target.value)} />
+                            <Input type="text" variant="outlined" size="md" label="Modelo" color="gray" onChange={(e) => setModelo(e.target.value)} />
+                            <Input type="text" variant="outlined" size="md" label="Cliente" color="gray" onChange={(e) => setCliente(e.target.value)} />
+                            <Input type="number" variant="outlined" size="md" label="Precio" color="gray" onChange={(e) => setPrecio(e.target.value)} />
+                            <Input type="text" variant="outlined" size="md" label="Folio" color="gray" onChange={(e) => setFolio(e.target.value)} />
+                            <div className='flex justify-start mb-0 gap-2 flex-wrap md:flex-nowrap'>
+                                <Checkbox label="Soluxe" onChange={(e) => setSoluxe(!Soluxe)} />
+                                <Checkbox label="Soluxeda" onChange={(e) => setSoluxeda(!Soluxeda)} />
+                                <Checkbox label="Facturado en Optica" onChange={(e) => setOptica(!Optica)} />
+                            </div>
+
+                        </fieldset>
+                        <fieldset className="flex flex-row gap-6 h-auto">
+                            <Link to="/admin" className="mt-8 w-1/2 flex items-center text-center justify-center gap-2">
+                                <Button ripple={true} variant="outlined" size="sm" fullWidth>
+                                    Cancelar
+                                </Button>
+                            </Link>
+                            <Button ripple={true} variant="gradient" size="sm" className="mt-8 w-1/2 flex items-center text-center justify-center gap-2" onClick={handleSubmit}>
+                                Registrar
+                            </Button>
+                        </fieldset>
+                    </form>
+                </div>
+            </div>
             <Toaster position="bottom-left" />
-        </>
+        </main>
     )
 
-}
-
-export default CreateForm;
+};
