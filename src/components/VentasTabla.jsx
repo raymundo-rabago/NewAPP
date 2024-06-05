@@ -11,7 +11,7 @@ import {
   getFilteredRowModel,
 } from "@tanstack/react-table";
 
-import { LuArrowDownUp } from "react-icons/lu";
+import { IoIosArrowUp, IoIosArrowDown } from 'react-icons/io';
 
 export const VentasTabla = ({ data, columns }) => {
 
@@ -60,13 +60,13 @@ export const VentasTabla = ({ data, columns }) => {
                 {headerGroup.headers.map((header) => (
                   <th key={header.id} onClick={header.column.getToggleSortingHandler()} className="border-b border-blue-gray-100 bg-blue-gray-50 p-3">
                     {header.isPlaceholder ? null : (
-                      <Typography variant="small" color="black" className="font-normal leading-none text-xs flex justify-between align-middle">
+                      <Typography variant="small" color="black" className="font-normal leading-none text-xs flex justify-between items-center">
                         {flexRender(
                           header.column.columnDef.header,
                           header.getContext()
                         )}
                         {
-                          { asc: <LuArrowDownUp className='opacity-40' />, desc: <LuArrowDownUp className='opacity-40' /> }[
+                          { asc: <IoIosArrowUp className='opacity-40' />, desc: <IoIosArrowDown className='opacity-40' /> }[
                           header.column.getIsSorted() ?? null
                           ]
                         }

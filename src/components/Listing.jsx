@@ -48,7 +48,7 @@ export const Listing = () => {
     <>
       <main id="Ventas" className='p-4 flex-col h-full'>
         <div className='container mx-auto'>
-          <div className='flex justify-between align-middle py-2 mb-4'>
+          <div className='flex justify-between items-center py-2 mb-4'>
             <Typography variant="h5" className="uppercase leading-4"><small>Listado de</small><br />Ventas</Typography>
             <div className='flex flex-col justify-center'>
               <Link to="/registro"><Button variant="gradient" size="sm" className="flex items-center gap-3" >Añadir <IoAddCircle /></Button></Link>
