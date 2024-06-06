@@ -41,7 +41,7 @@ export default function AuthPage() {
                     </form>
                 </CardBody>
             </Card>
-            <Toaster position="bottom-left" />
+            <Toaster richColors position="bottom-left" />
         </section>
     )
 };
