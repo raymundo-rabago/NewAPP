@@ -16,7 +16,6 @@ export default function AuthPage() {
     const navigate = useNavigate();
     useEffect(() => {
         if (loading) {
-            // maybe trigger a loading screen
             return;
         }
         if (user) navigate("/admin");

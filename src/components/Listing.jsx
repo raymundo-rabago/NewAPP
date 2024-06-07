@@ -9,6 +9,7 @@ import { HiOutlinePencilAlt, HiOutlineX } from "react-icons/hi";
 import axios from 'axios';
 
 import { VentasTabla } from './VentasTabla';
+import { EditForm } from './EditForm';
 
 
 export const Listing = () => {
@@ -23,22 +24,6 @@ export const Listing = () => {
  
   const openDrawer = () => setOpen(true);
   const closeDrawer = () => setOpen(false);
-
-  /*
-    axios.get(api_url)
-      .then(response => {
-        const dataArray = response.data;
-        const filteredArray = dataArray.filter(item => {
-          const itemDate = new Date(item.date);
-          const itemMonth = itemDate.getMonth() + 1;
-          return itemMonth === currentMonth;
-        });
-        console.log(filteredArray); // array with only elements from the current month
-      })
-      .catch(error => {
-        console.error(error);
-      });
-  */
 
   const editItem = () =>{
     openDrawer();
@@ -73,7 +58,6 @@ export const Listing = () => {
       header: "Editar",
       accessorKey: "Editar",
       cell: () => (<Button variant="text" onClick={editItem}><HiOutlinePencilAlt /></Button>)
-      // cell: () => <Button variant="text" size='sm' onClick={openDrawerRight()}><HiOutlinePencilAlt /></Button>
     }
   ];
 
@@ -92,22 +76,17 @@ export const Listing = () => {
           </div>
         </div>
       </main>
-      <Drawer open={false} onClose={closeDrawer} className="p-4">
+      <Drawer placement="right" open={open} onClose={closeDrawer} className="p-4">
         <div className="mb-6 flex items-center justify-between">
           <Typography variant="h5" color="blue-gray">Editar Venta</Typography>
           <IconButton variant="text" color="blue-gray" onClick={closeDrawer}>
             <HiOutlineX />
           </IconButton>
         </div>
-        <Typography color="gray" className="mb-8 pr-4 font-normal">
-          Material Tailwind features multiple React and HTML components, all
-          written with Tailwind CSS classes and Material Design guidelines.
-        </Typography>
+        <EditForm itemId={Id} />
         <div className="flex gap-2">
-          <Button size="sm" variant="outlined">
-            Documentation
-          </Button>
-          <Button size="sm">Get Started</Button>
+          <Button size="sm" variant="outlined" className="opacity-75" onClick={closeDrawer}>Cancelar</Button>
+          <Button variant="gradient" size="sm">Actualizar</Button>
         </div>
       </Drawer>
     </>

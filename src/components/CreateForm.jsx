@@ -28,16 +28,7 @@ export const CreateForm = () => {
     const [Soluxeda, setSoluxeda] = useState(false);
     const [Optica, setOptica] = useState(false);
 
-    const handleClear = ()=>{
-        setFecha = '',
-        setModelo = '',
-        setCliente = '',
-        setPrecio = '',
-        setFolio = '',
-        setSoluxe = false,
-        setSoluxeda = false,
-        setOptica = false
-    }
+    const inputs = document.querySelectorAll('input, date, number, textarea , checkbox');
 
     const postData = async () => {
         const Id = nanoid(8);
@@ -52,11 +43,12 @@ export const CreateForm = () => {
                 Soluxe,
                 Soluxeda,
                 Optica
-            })
+            }) 
         } catch (err) {
             console.log(err)
         } finally {
-            toast.success('Venta registrada!')
+            inputs.forEach((input) => (input.value = ''));
+            toast.success('Venta registrada!');
         }
     };
 
@@ -75,7 +67,7 @@ export const CreateForm = () => {
                     </div>
                 </div>
                 <div className='py-4'>
-                    <form className="mt-4 mb-2 w-full" onSubmit={handleSubmit}>
+                    <form className="mt-4 mb-2 w-full"  key={Id} onSubmit={handleSubmit}>
                         <fieldset className="flex flex-col gap-4 h-auto">
                             <Input type="date" variant="outlined" size="md" label="Fecha" placeholder="Dia/Mes/Año" color="gray" value={Fecha} onChange={(e) => setFecha(e.target.value)} />
                             <Input type="text" variant="outlined" size="md" label="Modelo" color="gray" onChange={(e) => setModelo(e.target.value)} />
