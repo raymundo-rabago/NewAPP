@@ -83,11 +83,7 @@ export const Listing = () => {
             <HiOutlineX />
           </IconButton>
         </div>
-        <EditForm itemId={Id} />
-        <div className="flex gap-2">
-          <Button size="sm" variant="outlined" className="opacity-75" onClick={closeDrawer}>Cancelar</Button>
-          <Button variant="gradient" size="sm">Actualizar</Button>
-        </div>
+        <EditForm />
       </Drawer>
     </>
   );
