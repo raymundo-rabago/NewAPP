@@ -4,6 +4,7 @@
 
 import { initializeApp } from "firebase/app";
 import { getAuth, signInWithEmailAndPassword, signOut } from "firebase/auth";
+import { getFirestore } from "firebase/firestore";
 import { toast } from 'sonner';
 
 const firebaseConfig = {
@@ -16,6 +17,7 @@ const firebaseConfig = {
 };
 
 export const app = initializeApp(firebaseConfig);
+export const db = getFirestore(app);
 export const auth = getAuth(app);
 
 // AUTH FUNCTIONS
@@ -31,3 +33,4 @@ export const logInWithEmailAndPassword = async (email, password) => {
 export const logout = async () => {
   await signOut(auth);
 };
+
