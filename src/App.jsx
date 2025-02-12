@@ -2,8 +2,7 @@
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 
 import AuthPage from './components/AuthPage';
-import AdminPage from './components/AdminPage';
-import RegisterPage from './components/RegisterPage';
+import Listing from './components/Listing';
 
 export function App() {
 
@@ -11,8 +10,7 @@ export function App() {
     <Router future={{ v7_startTransition: true, }}>
       <Routes>
         <Route exact path="/" element={<AuthPage />} />
-        <Route exact path="/admin" element={<AdminPage />} />
-        <Route exact path="/registro" element={<RegisterPage />} />
+        <Route exact path="/home" element={<Listing />} />
       </Routes>
     </Router>
   );
