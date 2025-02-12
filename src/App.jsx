@@ -8,7 +8,7 @@ import RegisterPage from './components/RegisterPage';
 export function App() {
 
   return (
-    <Router>
+    <Router future={{ v7_startTransition: true, }}>
       <Routes>
         <Route exact path="/" element={<AuthPage />} />
         <Route exact path="/admin" element={<AdminPage />} />

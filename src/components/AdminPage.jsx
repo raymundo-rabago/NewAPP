@@ -4,7 +4,8 @@ import { useNavigate } from "react-router-dom";
 import { auth, logout } from "../firebase";
 
 import { Header } from './Header';
-import { Listing } from './Listing';
+// import { VentasList } from './VentasList';
+import { Ventas } from './AddVenta';
 import { Footer } from './Footer';
 
 export default function AdminPage() {
@@ -21,7 +22,7 @@ export default function AdminPage() {
   return (
     <div className="pageWrapper">
       <Header />
-      <Listing />
+      <Ventas />
       <Footer />
     </div>
   );
