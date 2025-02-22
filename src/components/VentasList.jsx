@@ -3,7 +3,7 @@ import { collection, getDocs } from 'firebase/firestore';
 import { getDownloadURL, ref } from 'firebase/storage';
 import { db, storage } from '../firebase.js'; // Asegúrate de tener configurado firebaseConfig.js y exportar 'db'
 
-const VentasList = () => {
+export const VentasList = () => {
 
   const [ventas, setVentas] = useState([]);
 

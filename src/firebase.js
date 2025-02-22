@@ -4,6 +4,8 @@
 
 import { initializeApp } from "firebase/app";
 import { getAuth, signInWithEmailAndPassword, signOut } from "firebase/auth";
+import { getFirestore } from 'firebase/firestore';
+import { getStorage } from 'firebase/storage';
 import { toast } from 'sonner';
 
 const firebaseConfig = {
@@ -17,6 +19,7 @@ const firebaseConfig = {
 
 export const app = initializeApp(firebaseConfig);
 export const db = getFirestore(app);
+export const storage = getStorage(app);
 export const auth = getAuth(app);
 
 // AUTH FUNCTIONS
