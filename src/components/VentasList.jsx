@@ -3,11 +3,12 @@ import { collection, getDocs } from 'firebase/firestore';
 import { getDownloadURL, ref } from 'firebase/storage';
 import { db, storage } from '../firebase.js'; // Asegúrate de tener configurado firebaseConfig.js y exportar 'db'
 
-export const VentasList = () => {
+const VentasList = () => {
 
   const [ventas, setVentas] = useState([]);
 
   useEffect(() => {
+
     const fetchVentas = async () => {
       try {
         const ventasCol = collection(db, 'Ventas');
@@ -23,6 +24,7 @@ export const VentasList = () => {
     };
 
     fetchVentas();
+    
   }, []);
 
   return (
